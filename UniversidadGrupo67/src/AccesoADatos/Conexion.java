@@ -10,9 +10,10 @@ import javax.swing.JOptionPane;
 public class Conexion {
  
       // CREO TRES VARIABLES ESTATICAS QUE REPRESENTAN LA BASE DE DATO
-    private static String url = "jdbc:mariadb://localhost/universidadulp"; //NOMBRE DE LA BASE DE DATOS
-    private static String usuario = "root"; //NOMBRE DE USUARUIO
-    private static String password = ""; // PALABRA CLAVE DE ACCESO A LA BASE DE DATOS
+    private static final String URL = "jdbc:mariadb://localhost/"; 
+    private static final String DB = "universidadulp"; //NOMBRE DE LA BASE DE DATOS
+    private static final String USUARIO = "root"; //NOMBRE DE USUARUIO
+    private static final String PASSWORD = ""; // PALABRA CLAVE DE ACCESO A LA BASE DE DATOS
 
     private static Conexion conexion = null; // CREO UNA VARIABLE DE PRIVADA QUE REPRESENTA LA CLASE
 
@@ -33,7 +34,7 @@ public class Conexion {
         }
         try { //CREO LA CONEXION
             // ME CONECTO CON LA BASE DE DATOS SEGUN EL NOMBRE
-            cnn = DriverManager.getConnection(url, usuario, password);
+            cnn = DriverManager.getConnection(URL+DB, USUARIO, PASSWORD);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Imposible conectarse con la base de datos " + ex.getMessage());
         }

@@ -3,56 +3,61 @@ package newpackage.entidades;
 
 public class Materia {
     
-    private int intIdMateria;
-    private String strNombre;
-    private int  datAnio;
-    private boolean booEstado;
+    private int idMateria;
+    private String nombre;
+    private int  anioMateria;
+    private boolean activo;
 
     public Materia() {
     }
 
-    public Materia(String strNombre, int datAnio, boolean booEstado) {
-        this.strNombre = strNombre;
-        this.datAnio = datAnio;
-        this.booEstado = booEstado;
+    public Materia(int idMateria, String nombre, int anioMateria, boolean activo) {
+        this.idMateria = idMateria;
+        this.nombre = nombre;
+        this.anioMateria = anioMateria;
+        this.activo = activo;
     }
 
-    public int getIntIdMateria() {
-        return intIdMateria;
+    public Materia(String nombre, int anioMateria, boolean activo) {
+        this.nombre = nombre;
+        this.anioMateria = anioMateria;
+        this.activo = activo;
     }
 
-    public void setIntIdMateria(int intIdMateria) {
-        this.intIdMateria = intIdMateria;
+    public int getIdMateria() {
+        return idMateria;
     }
 
-    public String getStrNombre() {
-        return strNombre;
+    public void setIdMateria(int idMateria) {
+        this.idMateria = idMateria;
     }
 
-    public void setStrNombre(String strNombre) {
-        this.strNombre = strNombre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public int getDatAnio() {
-        return datAnio;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setDatAnio(int datAnio) {
-        this.datAnio = datAnio;
+    public int getAnioMateria() {
+        return anioMateria;
     }
 
-    public boolean isBooEstado() {
-        return booEstado;
+    public void setAnioMateria(int anioMateria) {
+        this.anioMateria = anioMateria;
     }
 
-    public void setBooEstado(boolean booEstado) {
-        this.booEstado = booEstado;
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     @Override
     public String toString() {
-        return "Materia{" + "intIdMateria=" + intIdMateria + ", strNombre=" + strNombre + ", datAnio=" + datAnio + ", booEstado=" + booEstado + '}';
-    }
-    
-    
+        return "Materia{" + "idMateria=" + idMateria + ", nombre=" + nombre + ", anioMateria=" + anioMateria + ", activo=" + activo + '}';
+    }    
 }
