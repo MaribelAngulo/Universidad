@@ -35,7 +35,7 @@ public class MateriaData {
             ResultSet rs = ps.getGeneratedKeys(); //Devolver clave generada
             if (rs.next()){
                 materia.setIdMateria(rs.getInt(1)); // Asignar IdMateria
-                JOptionPane.showMessageDialog(null, "Materia Agregada"); //Dialogo de materia agregada
+                JOptionPane.showMessageDialog(null, "Materia agregada"); //Dialogo de materia agregada
             }
             ps.close();
         } catch (SQLException ex) {
@@ -58,6 +58,7 @@ public class MateriaData {
             ps.setBoolean(3, materia.isActivo()); //Asignacion de valores
             ps.setInt(4, materia.getIdMateria()); //Asignacion de valores
             ps.executeUpdate(); // Ejecutar PreparedStatement
+            JOptionPane.showMessageDialog(null, "Materia modificada");
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia" + ex.getMessage());
