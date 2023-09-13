@@ -5,7 +5,7 @@
  */
 package newpackage.entidades;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 /**
  *
@@ -16,10 +16,10 @@ public class Alumno {
     private int idAlumno;
     private String apellido;
     private String nombre;
-    private LocalDate fechaNac;
+    private Date fechaNac;
     private boolean activo;
 
-    public Alumno(int idAlumno, String apellido, String nombre, LocalDate fechaNac, boolean activo) {
+    public Alumno(int idAlumno, String apellido, String nombre, Date fechaNac, boolean activo) {
         this.idAlumno = idAlumno;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -30,7 +30,7 @@ public class Alumno {
     public Alumno() {
     }
 
-    public Alumno(String apellido, String nombre, LocalDate fechaNac, boolean activo) {
+    public Alumno(String apellido, String nombre, Date fechaNac, boolean activo) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.fechaNac = fechaNac;
@@ -61,11 +61,11 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaNac() {
+    public Date getFechaNac() {
         return fechaNac;
     }
 
-    public void setFechaNac(LocalDate fechaNac) {
+    public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
     }
 
