@@ -72,11 +72,17 @@ public class Menu extends javax.swing.JFrame {
         jMenu44 = new javax.swing.JMenu();
         jMenu45 = new javax.swing.JMenu();
         jMenu46 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu24 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu38 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu47 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -169,18 +175,44 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu46.setText("jMenu46");
 
+        jMenuItem5.setText("jMenuItem5");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu2.setText("Materia");
+        jMenu2.setText("Alumno");
+
+        jMenuItem2.setText("Formulario Alumno");
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         jMenu1.setText("Materia");
+
+        jMenuItem3.setText("Formulario de Materia");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
         jMenuBar1.add(jMenu1);
 
         jMenu24.setText("Administracion");
+
+        jMenuItem6.setText("Manejo de inscripciones");
+        jMenu24.add(jMenuItem6);
+
+        jMenuItem4.setText("Manipulacio de notas ");
+        jMenu24.add(jMenuItem4);
+
         jMenuBar1.add(jMenu24);
 
         jMenu38.setText("consulta");
+
+        jMenuItem7.setText("Alumnos por Materia");
+        jMenu38.add(jMenuItem7);
+
         jMenuBar1.add(jMenu38);
 
         jMenu47.setText("salir");
@@ -201,6 +233,10 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,5 +325,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }
