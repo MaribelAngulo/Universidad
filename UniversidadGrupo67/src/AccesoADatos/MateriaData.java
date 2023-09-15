@@ -79,10 +79,16 @@ public class MateriaData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) { //Verificar si existe una materia con ese codigo
                 materia = new Materia();
-                materia.setIdMateria(rs.getInt("idMateria"));
-                materia.setNombre(rs.getString("nombre"));
-                materia.setAnioMateria(rs.getInt("anio"));
-                materia.setActivo(rs.getBoolean("estado"));
+                materia.setIdMateria(rs.getInt("idMateria")); //Setear nombre en TextField
+                materia.setNombre(rs.getString("nombre")); //Setear nombre en TextField
+                materia.setAnioMateria(rs.getInt("anio")); //Setear año en TextField
+                if (rs.getBoolean("estado") == true) {
+                    materia.setActivo(true); //Marcar RadioButton si estado es true
+                } else {
+                    materia.setActivo(false); //Desmarcar RadioButton si estado es false
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe una materia con ese codigo"); //Dialogo si no existe una materia con ese codigo
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia" + ex.getMessage());
