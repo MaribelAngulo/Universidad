@@ -19,9 +19,9 @@ import newpackage.entidades.Materia;
 
 /**
  *
- * @author Natasha
+ * @author Li Donni
  */
-public class FormularioMateria extends javax.swing.JFrame {
+public class FormularioMaterias extends javax.swing.JInternalFrame {
 
     private Connection con = null;
     private boolean mdfActivado = false;
@@ -30,9 +30,9 @@ public class FormularioMateria extends javax.swing.JFrame {
     private Materia materia = new Materia();
 
     /**
-     * Creates new form FormularioMateria
+     * Creates new form FormularioMaterias
      */
-    public FormularioMateria() {
+    public FormularioMaterias() {
         initComponents();
         jTfNombre.setEditable(false);
         jTfNombre.setBackground(Color.gray);
@@ -65,12 +65,27 @@ public class FormularioMateria extends javax.swing.JFrame {
         jTfCodigo = new javax.swing.JTextField();
         jTfNombre = new javax.swing.JTextField();
         jTfAnio = new javax.swing.JTextField();
+        jTfDocumento = new javax.swing.JTextField();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jTfApellido = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jTfNombre = new javax.swing.JTextField();
+        jBNuevo = new javax.swing.JButton();
         jRbEstado = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jBModificar = new javax.swing.JButton();
         jBBuscar = new javax.swing.JButton();
+        jBSalir = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jBEliminar.setText("Eliminar");
+
+        jBGuardar.setText("Guardar");
+
+        jLabel5.setText("Estado :");
+
+        jLabel6.setText("año");
 
         jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-más-50.png"))); // NOI18N
         jBNuevo.setText("Nuevo");
@@ -83,6 +98,9 @@ public class FormularioMateria extends javax.swing.JFrame {
         jLabel2.setText("Codigo:");
 
         jBSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-salir-50.png"))); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setText("Materia");
+
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +192,41 @@ public class FormularioMateria extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(jBEliminar)
+                        .addGap(54, 54, 54)
+                        .addComponent(jBGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)))
+                        .addGap(109, 109, 109)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRbEstado)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTfApellido)
+                                .addComponent(jTfNombre)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTfDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jToggleButton1))))))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,6 +263,9 @@ public class FormularioMateria extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jBSalir)
                 .addContainerGap())
+                    .addComponent(jBSalir)
+                    .addComponent(jBGuardar))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -372,41 +428,10 @@ public class FormularioMateria extends javax.swing.JFrame {
             gdActivado = false;
         }
     }//GEN-LAST:event_jBNuevoActionPerformed
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormularioMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormularioMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormularioMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormularioMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormularioMateria().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
