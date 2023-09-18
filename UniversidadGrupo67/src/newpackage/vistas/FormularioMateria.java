@@ -268,8 +268,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             try{
             materia.setNombre(jTfNombre.getText());
             materia.setAnioMateria(Integer.parseInt(jTfAnio.getText()));
-            materia.setActivo(jRbEstado.isSelected());
-            materia.setIdMateria(-1);
             materiaData.agregarMateria(materia);
             jBNuevo.doClick();
             }catch (NumberFormatException ex) {
