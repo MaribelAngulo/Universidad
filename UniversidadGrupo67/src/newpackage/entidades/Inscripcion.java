@@ -11,24 +11,24 @@ package newpackage.entidades;
  */
 public class Inscripcion {
     private int idInscripcion;
-    private int nota;
-    private int idAlumno;
-    private int idMateria;
+    private Alumno alumno;
+    private Materia materia;
+    private double nota;
 
     public Inscripcion() {
     }
 
-    public Inscripcion(int idInscripcion, int nota, int idAlumno, int idMateria) {
-        this.idInscripcion = idInscripcion;
+    public Inscripcion(Alumno alumno, Materia materia, double nota) {
+        this.alumno = alumno;
+        this.materia = materia;
         this.nota = nota;
-        this.idAlumno = idAlumno;
-        this.idMateria = idMateria;
     }
 
-    public Inscripcion(int nota, int idAlumno, int idMateria) {
+    public Inscripcion(int idInscripcion, Alumno alumno, Materia materia, double nota) {
+        this.idInscripcion = idInscripcion;
+        this.alumno = alumno;
+        this.materia = materia;
         this.nota = nota;
-        this.idAlumno = idAlumno;
-        this.idMateria = idMateria;
     }
 
     public int getIdInscripcion() {
@@ -39,32 +39,32 @@ public class Inscripcion {
         this.idInscripcion = idInscripcion;
     }
 
-    public int getNota() {
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
+    }
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
+    public double getNota() {
         return nota;
     }
 
-    public void setNota(int nota) {
+    public void setNota(double nota) {
         this.nota = nota;
-    }
-
-    public int getIdAlumno() {
-        return idAlumno;
-    }
-
-    public void setIdAlumno(int idAlumno) {
-        this.idAlumno = idAlumno;
-    }
-
-    public int getIdMateria() {
-        return idMateria;
-    }
-
-    public void setIdMateria(int idMateria) {
-        this.idMateria = idMateria;
     }
 
     @Override
     public String toString() {
-        return "Inscripcion{" + "idInscripcion=" + idInscripcion + ", nota=" + nota + ", idAlumno=" + idAlumno + ", idMateria=" + idMateria + '}';
+        return "Inscripcion{" + "idInscripcion=" + idInscripcion + ", alumno=" + alumno + ", materia=" + materia + ", nota=" + nota + '}';
     }
 }
