@@ -30,7 +30,7 @@ public class UniversidadGrupo67 {
         AlumnoData auxAlumnoData=new AlumnoData();
         LocalDate fecha1 = LocalDate.of(2014, Month.JANUARY, 1);
         Date fecha= Date.valueOf(fecha1);
-        Alumno alum1=new Alumno("Apellido", "Nombre", fecha, true);
+        Alumno alum1=new Alumno("Apellido", "Nombre", fecha1, true);
         //auxAlumnoData.guardarAlumno(alum1);
         //Alumno alum2=new Alumno();
         ArrayList<Alumno> Alumnos=new ArrayList();
