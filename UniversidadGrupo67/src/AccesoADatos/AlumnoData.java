@@ -17,23 +17,22 @@ public class AlumnoData {
 
     //AGREGO UN ALUMNO
     public void guardarAlumno(Alumno alumno) {
-
         //ESTA VARIBLE REPRESENTA MI SENTENCIA SQL
         String sql = "INSERT INTO alumno(dni, apellido, nombre, fechaNacimiento, estado) VALUES "
                 + "(" + alumno.getDni() + ",'" + alumno.getApellido() + "','" + alumno.getNombre() + "','" + alumno.getFechaNac() + "'," + alumno.isActivo() + ")";
-        //CREO UNA CONEXION CON MI BASE DE DATOS
-        con = Conexion.getConexion();
         try {
+            //CREO UNA CONEXION CON MI BASE DE DATOS
+            con = Conexion.getConexion();
             //ENVIO LA SENTENCIA SQL Y LA EJECUTO
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Alumno añadido con exito.");
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error Al Insertar Alumno" + ex.getMessage());
         }
         //CUANDO TERMINA TODO CIERRO MI CONEXION
         Conexion.cerrarConexion(con);
-
     }
 
     //MODIFICO UN ALUMNO
@@ -41,9 +40,9 @@ public class AlumnoData {
         //ESTA VARIBLE REPRESENTA MI SENTENCIA SQL
         String sql = "UPDATE alumno SET dni=" + alumno.getDni() + ",apellido='" + alumno.getApellido() + "',nombre='" + alumno.getNombre() + "',fechaNacimiento='" + alumno.getFechaNac() + "'"
                 + ",estado=" + alumno.isActivo() + " WHERE idAlumno=" + alumno.getIdAlumno();
-        //CREO UNA CONEXION CON MI BASE DE DATOS
-        con = Conexion.getConexion();
         try {
+            //CREO UNA CONEXION CON MI BASE DE DATOS
+            con = Conexion.getConexion();
             //ENVIO LA SENTENCIA SQL Y LA EJECUTO
             PreparedStatement ps = con.prepareStatement(sql);
             int res = ps.executeUpdate();
@@ -52,6 +51,7 @@ public class AlumnoData {
             } else {
                 JOptionPane.showMessageDialog(null, "Alumno modificado con exito.");
             }
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al Modificar " + ex.getMessage());
         }
@@ -61,12 +61,11 @@ public class AlumnoData {
 
     //BORRAR ALUMNO LOGICAMENTE
     public void eliminarAlumno(int id) {
-
         //ESTA VARIBLE REPRESENTA MI SENTENCIA SQL
         String sql = "UPDATE alumno SET estado=false WHERE idAlumno=" + id;
-        //CREO UNA CONEXION CON MI BASE DE DATOS
-        con = Conexion.getConexion();
         try {
+            //CREO UNA CONEXION CON MI BASE DE DATOS
+            con = Conexion.getConexion();
             //ENVIO LA SENTENCIA SQL Y LA EJECUTO
             PreparedStatement ps = con.prepareStatement(sql);
             int res = ps.executeUpdate();
@@ -75,6 +74,7 @@ public class AlumnoData {
             } else {
                 JOptionPane.showMessageDialog(null, "Imposible eliminar alumno ...");
             }
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al Eliminar" + ex.getMessage());
         }
@@ -86,9 +86,9 @@ public class AlumnoData {
     public Alumno buscarAlumno(int id) {
         Alumno alumno = null;
         String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno = " + id + " AND estado = 1";
-        //CREO UNA CONEXION CON MI BASE DE DATOS
-        con = Conexion.getConexion();
         try {
+            //CREO UNA CONEXION CON MI BASE DE DATOS
+            con = Conexion.getConexion();
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -99,10 +99,10 @@ public class AlumnoData {
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNacimiento"));
                 alumno.setActivo(true);
-
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el alumno");
             }
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
         }
@@ -114,9 +114,9 @@ public class AlumnoData {
     public Alumno buscarAlumnoPorDni(int dni) {
         Alumno alumno = null;
         String sql = "SELECT idAlumno, apellido, nombre, fechaNacimiento FROM alumno WHERE dni = " + dni + " AND estado = 1";
-        //CREO UNA CONEXION CON MI BASE DE DATOS
-        con = Conexion.getConexion();
         try {
+            //CREO UNA CONEXION CON MI BASE DE DATOS
+            con = Conexion.getConexion();
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -127,10 +127,10 @@ public class AlumnoData {
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNacimiento"));
                 alumno.setActivo(true);
-
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el alumno");
             }
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
         }
@@ -142,8 +142,8 @@ public class AlumnoData {
     public ArrayList<Alumno> listarAlumnos() {
         
         ArrayList<Alumno> alumnos = new ArrayList<>();
-        con=Conexion.getConexion();
         try {
+            con=Conexion.getConexion();
             String sql = "SELECT * FROM alumno WHERE estado = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -158,10 +158,10 @@ public class AlumnoData {
                 alumnos.add(alumno);
             }
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alumno " + ex.getMessage());
         }
+        Conexion.cerrarConexion(con);
         return alumnos;
     }
 }
