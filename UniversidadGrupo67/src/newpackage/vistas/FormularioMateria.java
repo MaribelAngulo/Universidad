@@ -5,17 +5,34 @@
  */
 package newpackage.vistas;
 
+import AccesoADatos.MateriaData;
+import java.awt.Color;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+import newpackage.entidades.Materia;
+
 /**
  *
- * @author Natasha
+ * @author Gregorio
  */
-public class FormularioMateria extends javax.swing.JFrame {
+public class FormularioMateria extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FormularioMateria
-     */
+    private Connection con = null;
+    private boolean mdfActivado = false;
+    private boolean gdActivado = false;
+    private MateriaData materiaData = new MateriaData();
+    private Materia materia = new Materia();
+
     public FormularioMateria() {
         initComponents();
+        jTfNombre.setEditable(false);
+        jTfNombre.setBackground(Color.gray);
+        jTfAnio.setEditable(false);
+        jTfAnio.setBackground(Color.gray);
+        jRbEstado.setEnabled(false);
+        jBEliminar.setEnabled(false);
+        jBGuardar.setEnabled(false);
+        jBModificar.setEnabled(false);
     }
 
     /**
@@ -27,183 +44,309 @@ public class FormularioMateria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jBNuevo = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jBSalir = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jBEliminar = new javax.swing.JButton();
-        jBGuardar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTfDocumento = new javax.swing.JTextField();
-        jTfApellido = new javax.swing.JTextField();
+        jTfCodigo = new javax.swing.JTextField();
         jTfNombre = new javax.swing.JTextField();
+        jTfAnio = new javax.swing.JTextField();
         jRbEstado = new javax.swing.JRadioButton();
+        jBEliminar = new javax.swing.JButton();
+        jBNuevo = new javax.swing.JButton();
+        jBGuardar = new javax.swing.JButton();
+        jBModificar = new javax.swing.JButton();
+        jBSalir = new javax.swing.JButton();
+        jBBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Formulario Materia");
+        setPreferredSize(new java.awt.Dimension(616, 576));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jToggleButton1.setText("Buscar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jTfCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jTfCodigoActionPerformed(evt);
             }
         });
+        getContentPane().add(jTfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 230, -1));
+        getContentPane().add(jTfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 300, -1));
+        getContentPane().add(jTfAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 300, -1));
+        getContentPane().add(jRbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, -1));
 
-        jBNuevo.setText("Nuevo");
-
-        jLabel2.setText(" codigo");
-
-        jBSalir.setText("Salir");
-
-        jLabel3.setText("Nombre");
-
+        jBEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-basura-501.png"))); // NOI18N
         jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, -1));
 
+        jBNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-más-50.png"))); // NOI18N
+        jBNuevo.setText("Nuevo");
+        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNuevoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
+
+        jBGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-guardar-50.png"))); // NOI18N
         jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 400, -1, -1));
 
-        jLabel5.setText("Estado :");
+        jBModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-editar-50.png"))); // NOI18N
+        jBModificar.setText("Modificar");
+        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, -1, -1));
 
-        jLabel6.setText("año");
+        jBSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-salir-50.png"))); // NOI18N
+        jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 500, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Materia");
+        jBBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-búsqueda-26.png"))); // NOI18N
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(jBEliminar)
-                        .addGap(54, 54, 54)
-                        .addComponent(jBGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                        .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)))
-                        .addGap(109, 109, 109)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRbEstado)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTfApellido)
-                                .addComponent(jTfNombre)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jTfDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jToggleButton1))))))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTfDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButton1))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addComponent(jTfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(89, 89, 89)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jRbEstado))
-                .addGap(106, 106, 106)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBNuevo)
-                    .addComponent(jBEliminar)
-                    .addComponent(jBSalir)
-                    .addComponent(jBGuardar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setText("Materias");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 18, -1, 60));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 84, 415, 10));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel2.setText("Estado:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, 30));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel3.setText("Codigo:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, 40));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel4.setText("Nombre:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 177, -1, 30));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel5.setText("Año:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void jTfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfCodigoActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_jTfCodigoActionPerformed
 
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        
+        jTfNombre.setEditable(false);
+        jTfNombre.setBackground(Color.gray);
+        jTfAnio.setEditable(false);
+        jTfAnio.setBackground(Color.gray);
+        jRbEstado.setEnabled(false);
+        jBEliminar.setEnabled(false);
+        jBGuardar.setEnabled(false);
+        jBModificar.setEnabled(false);
+        jTfCodigo.setEditable(true);
+        jTfCodigo.setBackground(Color.white);
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+        int codigo = 0;
+
+        try { //Bloque TRY-CATCH para verificar si el codigo es valido.
+            codigo = Integer.parseInt(jTfCodigo.getText());
+            materia = materiaData.buscarMateria(Integer.parseInt(jTfCodigo.getText()));
+            if (materia != null) {
+                jTfNombre.setText(materia.getNombre());
+                jTfAnio.setText(String.valueOf(materia.getAnioMateria()));
+                jRbEstado.setSelected(materia.isActivo());
+                if (!jTfNombre.getText().equals("")) {
+                    jBModificar.setEnabled(true); //Actviar boton de modificar
+                    jBEliminar.setEnabled(true); //Activar boton de eliminar
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormularioMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormularioMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormularioMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormularioMateria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
+            return;
         }
-        //</editor-fold>
+    }//GEN-LAST:event_jBBuscarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormularioMateria().setVisible(true);
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        
+        try { //Bloque TRY-CATCH para verificar si el codigo es valido.
+            materia.setIdMateria(Integer.parseInt(jTfCodigo.getText()));
+            materia.setNombre(jTfNombre.getText());
+            materia.setAnioMateria(Integer.parseInt(jTfAnio.getText()));
+            materia.setActivo(jRbEstado.isSelected());
+            materiaData.eliminarMateria(materia);
+            jBBuscar.doClick();
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
+            return;
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+                //If para activar tocando Button Modificar y al volver a tocarlo lo desactiva
+        if (mdfActivado == false) {
+            jTfNombre.setEditable(true); //Activa TextField Nombre
+            jTfNombre.setBackground(Color.white); //Cambia de color a blanco
+            jTfAnio.setEditable(true); //Activa TextField Año
+            jTfAnio.setBackground(Color.white); //Cambia de color a blanco
+            jRbEstado.setEnabled(true); //Activa RadioButton Estado
+            jTfCodigo.setEditable(false); //Desactiva TextField Codigo
+            jTfCodigo.setBackground(Color.gray); //Cambia de color a gris
+            mdfActivado = true; //Pasa a true el mdfActivado
+            jBEliminar.setEnabled(false); //Desactiva Button Eliminar
+            jBGuardar.setEnabled(true); //Activa el Button Guardar
+        } else {
+            jTfNombre.setEditable(false); //Activa TextField Nombre
+            jTfNombre.setBackground(Color.gray); //Cambia de color a blanco
+            jTfAnio.setEditable(false); //Activa TextField Año
+            jTfAnio.setBackground(Color.gray); //Cambia de color a blanco
+            jRbEstado.setEnabled(false); //Activa RadioButton Estado
+            jTfCodigo.setEditable(true); //Activa TextField Codigo
+            jTfCodigo.setBackground(Color.white); //Cambia de color a blanco
+            mdfActivado = false; //Pasa a false el mdfActivado
+            jBEliminar.setEnabled(true); //Activa Button Eliminar
+            jBGuardar.setEnabled(false); //Desactiva el Button Guardar
+        }
+    }//GEN-LAST:event_jBModificarActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+                int codigo = 0;
+
+        if (mdfActivado) {
+            try { //Bloque TRY-CATCH para verificar si el codigo es valido.
+                codigo = Integer.parseInt(jTfCodigo.getText());
+                if (jTfNombre.getText().equals("")) { //Verifica que no sea una cadena vacia
+                    JOptionPane.showMessageDialog(null, "Ingrese un nombre valido"); //Dialogo de nombre invalido
+                    return;
+                }
+                materia.setNombre(jTfNombre.getText());
+                materia.setAnioMateria(Integer.parseInt(jTfAnio.getText()));
+                materia.setActivo(jRbEstado.isSelected());
+                materia.setIdMateria(codigo);
+                materiaData.modificarMateria(materia);
+                jBModificar.doClick(); //Simulacion de click en el boton modificar para desactivar botones y textfield
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
+                return;
             }
-        });
-    }
+        } else {
+            if (jTfNombre.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Ingrese un nombre valido"); //Dialogo de nombre invalido
+                return;
+            }
+            try{
+            materia.setNombre(jTfNombre.getText());
+            materia.setAnioMateria(Integer.parseInt(jTfAnio.getText()));
+            materiaData.agregarMateria(materia);
+            jBNuevo.doClick();
+            }catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
+                return;
+            }
+        }
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+        
+        if (gdActivado == false) {
+            jTfNombre.setEditable(true); //Activar TextField Nombre
+            jTfNombre.setBackground(Color.white); //Cambiar de color a white
+            jTfNombre.setText(""); //Vaciar TextField
+            jTfAnio.setEditable(true); //Activar TextField 
+            jTfAnio.setBackground(Color.white); //Cambiar de color a white
+            jTfAnio.setText(""); //Vaciar TextField
+            jRbEstado.setEnabled(false); //Desactivar RadioButton Estado
+            jRbEstado.setSelected(true); //Seleccionar RadioButton Estado
+            jTfCodigo.setEditable(false); //Desactivar TextField Codigo
+            jTfCodigo.setBackground(Color.gray); //Cambiar de color a gray
+            jTfCodigo.setText(""); //Vaciar TextField
+            jBModificar.setEnabled(false); //Desactivar boton Modificar
+            jBEliminar.setEnabled(false); //Desactivar boton Eliminar
+            jBGuardar.setEnabled(true); //Activar boton Guardar
+            gdActivado = true;
+        } else {
+            jTfNombre.setEditable(false);
+            jTfNombre.setBackground(Color.gray);
+            jTfAnio.setEditable(false);
+            jTfAnio.setBackground(Color.gray);
+            jRbEstado.setEnabled(false);
+            jBEliminar.setEnabled(false);
+            jBGuardar.setEnabled(false);
+            jBModificar.setEnabled(false);
+            jTfCodigo.setEditable(true); //Desactivar TextField Codigo
+            jTfCodigo.setBackground(Color.white); //Cambiar de color a white
+            jTfCodigo.setText(""); //Vaciar TextField
+            jTfAnio.setText(""); //Vaciar TextField
+            jTfNombre.setText(""); //Vaciar TextField
+            jRbEstado.setSelected(false); //Deseleccionar RadioButton Estado
+            gdActivado = false;
+        }
+    }//GEN-LAST:event_jBNuevoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBGuardar;
+    private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBNuevo;
     private javax.swing.JButton jBSalir;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JInternalFrame jInternalFrame2;
+    private javax.swing.JInternalFrame jInternalFrame3;
+    private javax.swing.JInternalFrame jInternalFrame4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton jRbEstado;
+    private javax.swing.JRadioButton jRbEstado1;
+    private javax.swing.JRadioButton jRbEstado2;
+    private javax.swing.JRadioButton jRbEstado3;
+    private javax.swing.JRadioButton jRbEstado4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTfApellido;
-    private javax.swing.JTextField jTfDocumento;
+    private javax.swing.JTextField jTfAnio;
+    private javax.swing.JTextField jTfCodigo;
     private javax.swing.JTextField jTfNombre;
+    private javax.swing.JTextField jTfNombre1;
+    private javax.swing.JTextField jTfNombre2;
+    private javax.swing.JTextField jTfNombre3;
+    private javax.swing.JTextField jTfNombre4;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
     // End of variables declaration//GEN-END:variables
 }
