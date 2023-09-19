@@ -254,7 +254,7 @@ public class Menu extends javax.swing.JFrame {
     private void jMIFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFormularioMateriaActionPerformed
         // TODO add your handling code here:
         
-        FormularioMaterias ventana=new FormularioMaterias();
+        FormularioMateria ventana=new FormularioMateria();
         jPanelPrincipal.removeAll();
         jPanelPrincipal.repaint();
         jPanelPrincipal.add(ventana);
