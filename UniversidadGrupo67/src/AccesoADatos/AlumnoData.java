@@ -197,9 +197,9 @@ public class AlumnoData {
             PreparedStatement ps = con.prepareStatement(sql);
             int res = ps.executeUpdate();
             if (res == 1) {
-                JOptionPane.showMessageDialog(null, "Alumno Activado ....");
+                JOptionPane.showMessageDialog(null, "Alumno Activado");
             } else {
-                JOptionPane.showMessageDialog(null, "Imposible Activar alumno ...");
+                JOptionPane.showMessageDialog(null, "Imposible Activar alumno");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en registro" + ex.getMessage());

@@ -54,17 +54,24 @@
                           <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextDni" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
-                          <Component id="jTextApellido" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
-                          <Component id="jTextNombre" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
-                          <Component id="jRBEstado" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="JDateFechaNacimiento" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jBtnBuscar" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBtnSalir" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTextDni" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
+                                  <Component id="jTextApellido" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
+                                  <Component id="jTextNombre" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
+                                  <Component id="jRBEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jBtnBuscar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBtnSalir" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="JDateFechaNacimiento" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -119,12 +126,9 @@
                   </Group>
                   <Component id="jRBEstado" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <Component id="JDateFechaNacimiento" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
@@ -137,7 +141,7 @@
                       <Component id="jBtnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="85" max="32767" attributes="0"/>
+              <EmptySpace pref="89" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -248,8 +252,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextApellido">
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="JDateFechaNacimiento">
-    </Component>
     <Component class="javax.swing.JButton" name="jBtnBuscar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
@@ -272,6 +274,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnModificarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="JDateFechaNacimiento">
     </Component>
   </SubComponents>
 </Form>
