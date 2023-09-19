@@ -43,7 +43,7 @@ public class InscripcionData {
             ResultSet rs = ps.getGeneratedKeys(); //Devolver clave generada
             if (rs.next()) {
                 inscripcion.setIdInscripcion(rs.getInt(1)); // Asignar IdMateria
-                JOptionPane.showMessageDialog(null, "Inscripcion realizada"); //Dialogo de materia agregada
+                JOptionPane.showMessageDialog(null, "Inscripcion realizada. Cod. de Inscripcion: "+rs.getInt(1)); //Dialogo de materia agregada
             }
             ps.close();
         } catch (SQLException ex) {
