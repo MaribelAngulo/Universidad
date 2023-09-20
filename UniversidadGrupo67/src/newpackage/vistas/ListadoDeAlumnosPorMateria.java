@@ -7,8 +7,12 @@ package newpackage.vistas;
 
 import AccesoADatos.InscripcionData;
 import AccesoADatos.MateriaData;
+import java.awt.Component;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -22,8 +26,8 @@ import newpackage.entidades.Materia;
  */
 public class ListadoDeAlumnosPorMateria extends javax.swing.JInternalFrame {
 
-    MateriaData matdata = new MateriaData();
-    InscripcionData insdata = new InscripcionData();
+    MateriaData matData = new MateriaData();
+    InscripcionData insData = new InscripcionData();
 
     private final DefaultTableModel tabla = new DefaultTableModel() { //Creo un objeto DefaulTableModel para darle un modelo a la tabla
         @Override
@@ -153,7 +157,7 @@ public class ListadoDeAlumnosPorMateria extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSalir;
-    private javax.swing.JComboBox<String> jCBMateria;
+    private javax.swing.JComboBox<Materia> jCBMateria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRBAlumnos;
@@ -199,30 +203,30 @@ public class ListadoDeAlumnosPorMateria extends javax.swing.JInternalFrame {
 
     //Metodo para rellenar ComboBox
     private void armarComboBox() {
-        ArrayList<Materia> listaMaterias = new ArrayList<Materia>(matdata.listarMaterias()); //Creo ArrayList y lo lleno con el metodo listarMaterias() de la clase MateriaData
+        ArrayList<Materia> listaMaterias = new ArrayList<Materia>(matData.listarMaterias()); //Creo ArrayList y lo lleno con el metodo listarMaterias() de la clase MateriaData
         jCBMateria.removeAllItems(); //Remuevo todos los items del ComboBox
         for (Materia materia : listaMaterias) { //For-e
             if (materia.isActivo() && jRBMaterias.isSelected() == false) { //Si la materia esta habilitada y el RadioButton desactivado..
-                jCBMateria.addItem(materia.getNombre()); //Agregar nombre de materia al ComboBox
+                jCBMateria.addItem(materia); //Agregar nombre de materia al ComboBox
             } else if (jRBMaterias.isSelected() == true) { //Si esta activado el RadioButton...
-                jCBMateria.addItem(materia.getNombre()); //Agregar nombre de materia al ComboBox
+                jCBMateria.addItem(materia); //Agregar nombre de materia al ComboBox
             }
         }
     }
 
     //Metodo para rellenar la tabla
     public void rellenarTabla() {
-        String nombreMateria = (String) jCBMateria.getSelectedItem(); // Extraigo el String del ComboBox
-        int idMateria = matdata.materiaIdPorNombre(nombreMateria); //Extraigo el idMateria usando el metodo de MateriaData enviandole el nombre
-        ArrayList<Alumno> alumno = new ArrayList<Alumno>(insdata.obtenerAlumnosXMateria(idMateria)); //Hago un ArrayList con los alumnos
+        Materia materia = (Materia)jCBMateria.getSelectedItem();
+        if(materia != null){
+        ArrayList<Alumno> alumnos = new ArrayList<Alumno>(insData.obtenerAlumnosXMateria(materia.getIdMateria())); //Hago un ArrayList con los alumnos
         borrarFilas(); //Borro filas
-        for (Alumno alumno1 : alumno) {
+       for (Alumno alumno1 : alumnos) {
             if (alumno1.isActivo() == true && jRBAlumnos.isSelected() == false) { //Si el alumno esta activo y el RadioButton esta desactivado..
                 tabla.addRow(new Object[]{alumno1.getIdAlumno(), alumno1.getApellido(), alumno1.getNombre(), alumno1.getDni()});
             } else if (jRBAlumnos.isSelected() == true) { // Si el RadioButton esta activoado, muestra todo
                 tabla.addRow(new Object[]{alumno1.getIdAlumno(), alumno1.getApellido(), alumno1.getNombre(), alumno1.getDni()});
             }
         }
+        }
     }
-
 }

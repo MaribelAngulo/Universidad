@@ -143,26 +143,5 @@ public class MateriaData {
         }
         return lista;
     }
-
-//Metodo para devolver IdMateria mediante el nombre
-    public int materiaIdPorNombre(String nombre) {
-        // Consulta sql para insertar materia
-        String sql = "SELECT idMateria FROM Materia WHERE nombre=?";
-        try {
-            con = Conexion.getConexion(); //Conexion con la base de datos
-            PreparedStatement ps = con.prepareStatement(sql); //PreparedStatement con la consulta sql
-            ps.setString(1, nombre);
-            ResultSet rs = ps.executeQuery(); // Ejecutar PreparedStatement
-            if (rs.next()) { // Bucle para agregar elementos a la lista
-                return rs.getInt(1);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia" + ex.getMessage());
-        } finally {
-            Conexion.cerrarConexion(con); // Cerrar conexion
-        }
-        return 0;
-    }
-
+    
 }
