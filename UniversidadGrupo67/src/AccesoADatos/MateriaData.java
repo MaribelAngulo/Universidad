@@ -34,7 +34,7 @@ public class MateriaData {
             ps.executeUpdate(); // Ejecutar PreparedStatement
             ResultSet rs = ps.getGeneratedKeys(); //Devolver clave generada
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Materia agregada con el codigo: "+rs.getInt(1)); //Dialogo de materia agregada
+                JOptionPane.showMessageDialog(null, "Materia agregada con el codigo: " + rs.getInt(1)); //Dialogo de materia agregada
             }
             ps.close();
         } catch (SQLException ex) {
@@ -110,7 +110,7 @@ public class MateriaData {
                 ps.executeUpdate(); // Ejecutar PreparedStatement
                 JOptionPane.showMessageDialog(null, "Materia eliminada");
                 ps.close();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "La materia ya ha sido eliminada"); //Dialogo de materia eliminada 
             }
         } catch (SQLException ex) {
@@ -121,7 +121,7 @@ public class MateriaData {
     }
 
 // Metodo para listar materias
-public List listarMaterias() {
+    public List listarMaterias() {
 
         ArrayList<Materia> lista = new ArrayList<Materia>();
 
@@ -131,18 +131,38 @@ public List listarMaterias() {
             con = Conexion.getConexion(); //Conexion con la base de datos
             PreparedStatement ps = con.prepareStatement(sql); //PreparedStatement con la consulta sql
             ResultSet rs = ps.executeQuery(); // Ejecutar PreparedStatement
-            
+
             while (rs.next()) { // Bucle para agregar elementos a la lista
                 lista.add(new Materia(rs.getInt("idMateria"), rs.getString("nombre"), rs.getInt("anio"), rs.getBoolean("estado")));
             }
-            JOptionPane.showMessageDialog(null, "Listado de materias completo"); // Mensaje
-        ps.close();
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia" + ex.getMessage());
         } finally {
             Conexion.cerrarConexion(con); // Cerrar conexion
         }
         return lista;
+    }
+
+//Metodo para devolver IdMateria mediante el nombre
+    public int materiaIdPorNombre(String nombre) {
+        // Consulta sql para insertar materia
+        String sql = "SELECT idMateria FROM Materia WHERE nombre=?";
+        try {
+            con = Conexion.getConexion(); //Conexion con la base de datos
+            PreparedStatement ps = con.prepareStatement(sql); //PreparedStatement con la consulta sql
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery(); // Ejecutar PreparedStatement
+            if (rs.next()) { // Bucle para agregar elementos a la lista
+                return rs.getInt(1);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia" + ex.getMessage());
+        } finally {
+            Conexion.cerrarConexion(con); // Cerrar conexion
+        }
+        return 0;
     }
 
 }
