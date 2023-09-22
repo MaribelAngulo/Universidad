@@ -62,6 +62,9 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         jRbMateriasInscriptas = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
 
+        setBorder(null);
+        setClosable(true);
+
         jRbMateriasNoInscriptas.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jRbMateriasNoInscriptas.setText("Materias no inscriptas");
         jRbMateriasNoInscriptas.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +197,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
                     .addComponent(jbInscribir)
                     .addComponent(jbAnularInscripcion)
                     .addComponent(jbSalir))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         pack();
@@ -224,7 +227,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
-        Dispose();
+        dispose(); //Salir
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jCbAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbAlumnosActionPerformed
