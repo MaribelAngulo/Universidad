@@ -79,6 +79,7 @@ public class Menu extends javax.swing.JFrame {
         jmMateria = new javax.swing.JMenu();
         jMIFormularioMateria = new javax.swing.JMenuItem();
         jMenu24 = new javax.swing.JMenu();
+        jMIInscripciones = new javax.swing.JMenuItem();
         jMenu38 = new javax.swing.JMenu();
         jMenu47 = new javax.swing.JMenu();
 
@@ -173,6 +174,9 @@ public class Menu extends javax.swing.JFrame {
         jMenu46.setText("jMenu46");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1200, 800));
+
+        jPanelPrincipal.setPreferredSize(new java.awt.Dimension(1800, 1200));
 
         javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
         jPanelPrincipal.setLayout(jPanelPrincipalLayout);
@@ -210,6 +214,15 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jmMateria);
 
         jMenu24.setText("Administracion");
+
+        jMIInscripciones.setText("Manejo de Inscripciones");
+        jMIInscripciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIInscripcionesActionPerformed(evt);
+            }
+        });
+        jMenu24.add(jMIInscripciones);
+
         jMenuBar1.add(jMenu24);
 
         jMenu38.setText("consulta");
@@ -224,12 +237,12 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPrincipal)
+            .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelPrincipal)
+                .addComponent(jPanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -240,28 +253,30 @@ public class Menu extends javax.swing.JFrame {
     
     private void jMIFormularioAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFormularioAlumnoActionPerformed
         // TODO add your handling code here:
-        
         FormularioAlumnos ventana=new FormularioAlumnos();
         jPanelPrincipal.removeAll();
         jPanelPrincipal.repaint();
         jPanelPrincipal.add(ventana);
         ventana.setVisible(true);
-           
-       
-        
     }//GEN-LAST:event_jMIFormularioAlumnoActionPerformed
 
     private void jMIFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFormularioMateriaActionPerformed
         // TODO add your handling code here:
-        
         FormularioMateria ventana=new FormularioMateria();
         jPanelPrincipal.removeAll();
         jPanelPrincipal.repaint();
         jPanelPrincipal.add(ventana);
         ventana.setVisible(true);
-           
-        
     }//GEN-LAST:event_jMIFormularioMateriaActionPerformed
+
+    private void jMIInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIInscripcionesActionPerformed
+        // TODO add your handling code here:
+        Inscripciones ventana=new Inscripciones();
+        jPanelPrincipal.removeAll();
+        jPanelPrincipal.repaint();
+        jPanelPrincipal.add(ventana);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jMIInscripcionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,6 +316,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jMIFormularioAlumno;
     private javax.swing.JMenuItem jMIFormularioMateria;
+    private javax.swing.JMenuItem jMIInscripciones;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
