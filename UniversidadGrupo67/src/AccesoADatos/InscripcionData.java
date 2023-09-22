@@ -214,11 +214,11 @@ public class InscripcionData {
     
     public List<Alumno> obtenerAlumnosXMateria(int idMateria){
         ArrayList<Alumno> alumnos = new ArrayList<>();
-         String sql = "SELECT alumno.idAlumno, alumno.dni, alumno.apellido, alumno.nombre " +
+         String sql = "SELECT alumno.idAlumno, alumno.dni, alumno.apellido, alumno.nombre, alumno.estado " +
                       "FROM materia " +
                       "INNER JOIN inscripcion ON materia.idMateria = inscripcion.idMateria " +
                       "INNER JOIN alumno ON alumno.idAlumno = inscripcion.idAlumno " +
-                      "WHERE materia.estado=1 AND alumno.estado=1 AND materia.idMateria=?";
+                      "WHERE materia.idMateria=?";
         try {
             //CREO UNA CONEXION CON MI BASE DE DATOS
             con = Conexion.getConexion();
@@ -231,6 +231,7 @@ public class InscripcionData {
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
+                alumno.setActivo(rs.getBoolean("estado"));
                 //Guardo la inscripcion en la lista
                 alumnos.add(alumno);
             } 
