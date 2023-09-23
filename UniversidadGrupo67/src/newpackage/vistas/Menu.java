@@ -79,6 +79,7 @@ public class Menu extends javax.swing.JFrame {
         jmMateria = new javax.swing.JMenu();
         jMIFormularioMateria = new javax.swing.JMenuItem();
         jMenu24 = new javax.swing.JMenu();
+        jMManipulacionDeNotas = new javax.swing.JMenuItem();
         jMenu38 = new javax.swing.JMenu();
         jMenu47 = new javax.swing.JMenu();
 
@@ -210,12 +211,26 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jmMateria);
 
         jMenu24.setText("Administracion");
+
+        jMManipulacionDeNotas.setText("Manipulacion De Notas");
+        jMManipulacionDeNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMManipulacionDeNotasActionPerformed(evt);
+            }
+        });
+        jMenu24.add(jMManipulacionDeNotas);
+
         jMenuBar1.add(jMenu24);
 
         jMenu38.setText("consulta");
         jMenuBar1.add(jMenu38);
 
         jMenu47.setText("salir");
+        jMenu47.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu47ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu47);
 
         setJMenuBar(jMenuBar1);
@@ -263,6 +278,23 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMIFormularioMateriaActionPerformed
 
+    // CARGO LAS NOTAS DEL ALUMNOS
+    private void jMManipulacionDeNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMManipulacionDeNotasActionPerformed
+        
+        CargaDeNotas ventana=new CargaDeNotas();
+        jPanelPrincipal.removeAll();
+        jPanelPrincipal.repaint();
+        jPanelPrincipal.add(ventana);
+        ventana.setVisible(true);
+        
+    }//GEN-LAST:event_jMManipulacionDeNotasActionPerformed
+
+    private void jMenu47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu47ActionPerformed
+        // TODO add your handling code here:
+       
+
+    }//GEN-LAST:event_jMenu47ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -301,6 +333,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jMIFormularioAlumno;
     private javax.swing.JMenuItem jMIFormularioMateria;
+    private javax.swing.JMenuItem jMManipulacionDeNotas;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
