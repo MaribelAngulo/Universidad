@@ -81,6 +81,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu24 = new javax.swing.JMenu();
         jMManipulacionDeNotas = new javax.swing.JMenuItem();
         jMenu38 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu47 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -223,6 +224,15 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu24);
 
         jMenu38.setText("consulta");
+
+        jMenuItem2.setText("Alumnos por materia");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu38.add(jMenuItem2);
+
         jMenuBar1.add(jMenu38);
 
         jMenu47.setText("salir");
@@ -251,31 +261,29 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
+
     private void jMIFormularioAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFormularioAlumnoActionPerformed
         // TODO add your handling code here:
-        
-        FormularioAlumnos ventana=new FormularioAlumnos();
+
+        FormularioAlumnos ventana = new FormularioAlumnos();
         jPanelPrincipal.removeAll();
         jPanelPrincipal.repaint();
         jPanelPrincipal.add(ventana);
         ventana.setVisible(true);
-           
-       
-        
+
+
     }//GEN-LAST:event_jMIFormularioAlumnoActionPerformed
 
     private void jMIFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFormularioMateriaActionPerformed
         // TODO add your handling code here:
-        
-        FormularioMateria ventana=new FormularioMateria();
+
+        FormularioMateria ventana = new FormularioMateria();
         jPanelPrincipal.removeAll();
         jPanelPrincipal.repaint();
         jPanelPrincipal.add(ventana);
         ventana.setVisible(true);
-           
-        
+
+
     }//GEN-LAST:event_jMIFormularioMateriaActionPerformed
 
     // CARGO LAS NOTAS DEL ALUMNOS
@@ -294,6 +302,15 @@ public class Menu extends javax.swing.JFrame {
        
 
     }//GEN-LAST:event_jMenu47ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        
+        ListadoDeAlumnosPorMateria ventana = new ListadoDeAlumnosPorMateria();
+        jPanelPrincipal.removeAll();
+        jPanelPrincipal.repaint();
+        jPanelPrincipal.add(ventana);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -383,6 +400,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JDesktopPane jPanelPrincipal;
     private javax.swing.JMenu jmAlumnos;
     private javax.swing.JMenu jmMateria;
