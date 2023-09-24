@@ -71,6 +71,8 @@ public class ListadoDeAlumnosPorMateria extends javax.swing.JInternalFrame {
         jBSalir = new javax.swing.JButton();
         jRBMaterias = new javax.swing.JRadioButton();
 
+        setBorder(null);
+        setClosable(true);
         setTitle("Alumnos por materia");
         setPreferredSize(new java.awt.Dimension(752, 620));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
