@@ -80,6 +80,7 @@ public class Menu extends javax.swing.JFrame {
         jMIFormularioMateria = new javax.swing.JMenuItem();
         jMenu24 = new javax.swing.JMenu();
         jMIInscripciones = new javax.swing.JMenuItem();
+        jMManipulacionDeNotas = new javax.swing.JMenuItem();
         jMenu38 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu47 = new javax.swing.JMenu();
@@ -224,6 +225,15 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu24.add(jMIInscripciones);
 
+
+        jMManipulacionDeNotas.setText("Manipulacion De Notas");
+        jMManipulacionDeNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMManipulacionDeNotasActionPerformed(evt);
+            }
+        });
+        jMenu24.add(jMManipulacionDeNotas);
+
         jMenuBar1.add(jMenu24);
 
         jMenu38.setText("consulta");
@@ -239,6 +249,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu38);
 
         jMenu47.setText("salir");
+        jMenu47.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu47ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu47);
 
         setJMenuBar(jMenuBar1);
@@ -286,6 +301,26 @@ public class Menu extends javax.swing.JFrame {
         jPanelPrincipal.add(ventana);
         ventana.setVisible(true);
     }//GEN-LAST:event_jMIInscripcionesActionPerformed
+
+
+    }//GEN-LAST:event_jMIFormularioMateriaActionPerformed
+
+    // CARGO LAS NOTAS DEL ALUMNOS
+    private void jMManipulacionDeNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMManipulacionDeNotasActionPerformed
+        
+        CargaDeNotas ventana=new CargaDeNotas();
+        jPanelPrincipal.removeAll();
+        jPanelPrincipal.repaint();
+        jPanelPrincipal.add(ventana);
+        ventana.setVisible(true);
+        
+    }//GEN-LAST:event_jMManipulacionDeNotasActionPerformed
+
+    private void jMenu47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu47ActionPerformed
+        // TODO add your handling code here:
+       
+
+    }//GEN-LAST:event_jMenu47ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         
@@ -335,6 +370,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIFormularioAlumno;
     private javax.swing.JMenuItem jMIFormularioMateria;
     private javax.swing.JMenuItem jMIInscripciones;
+    private javax.swing.JMenuItem jMManipulacionDeNotas;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
