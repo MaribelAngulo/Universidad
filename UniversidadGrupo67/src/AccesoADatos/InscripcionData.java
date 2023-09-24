@@ -139,12 +139,10 @@ public class InscripcionData {
     
     public List<Materia> obtenerMateriasNoCursadas(int idAlumno){
         ArrayList<Materia> materiasNoCursadas = new ArrayList<>();
-         String sql = "SELECT materia.idMateria, materia.nombre, materia.anio " +
+         String sql = "SELECT materia.idMateria, materia.nombre, materia.anio, materia.estado " +
                      "FROM materia " +
-                     "INNER JOIN inscripcion " +
-                     "ON materia.idMateria = inscripcion.idMateria " +
-                     "WHERE inscripcion.idAlumno!=? AND materia.estado=1 " +
-                     "GROUP BY materia.idMateria";
+                     "WHERE materia.estado=1 AND materia.idMateria NOT IN " +
+                     "(SELECT inscripcion.idMateria FROM inscripcion WHERE inscripcion.idAlumno=?)";
         try {
             //CREO UNA CONEXION CON MI BASE DE DATOS
             con = Conexion.getConexion();
@@ -156,6 +154,7 @@ public class InscripcionData {
                 materia.setIdMateria(rs.getInt("idMateria"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("anio"));
+                materia.setActivo(rs.getBoolean("estado"));
                 //Guardo la inscripcion en la lista
                 materiasNoCursadas.add(materia);
             } 
