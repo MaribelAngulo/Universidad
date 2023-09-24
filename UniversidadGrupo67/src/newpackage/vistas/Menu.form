@@ -421,6 +421,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Administracion"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMManipulacionDeNotas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Manipulacion De Notas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMManipulacionDeNotasActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu38">
           <Properties>
@@ -441,6 +451,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="salir"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu47ActionPerformed"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
