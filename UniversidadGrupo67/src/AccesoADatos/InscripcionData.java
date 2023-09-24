@@ -31,10 +31,11 @@ public class InscripcionData {
     }
     
     public void guardarInscripcion(Inscripcion inscripcion){
-        String sql = "INSERT INTO inscripcion(idAlumno, idMateria) VALUES (?, ?)";
+        String sql = "INSERT INTO inscripcion(nota, idAlumno, idMateria) VALUES (?, ?, ?)";
         try {
             con = Conexion.getConexion(); //Conexion con la base de datos
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); //PreparedStatement con la consulta sql
+            ps.setDouble(1, inscripcion.getNota()); //Asignacion de valores
             ps.setInt(2, inscripcion.getAlumno().getIdAlumno()); //Asignacion de valores
             ps.setInt(3, inscripcion.getMateria().getIdMateria()); //Asignacion de valores
             ps.executeUpdate(); // Ejecutar PreparedStatement

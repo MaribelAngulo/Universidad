@@ -7,10 +7,13 @@ package newpackage.vistas;
 
 import AccesoADatos.AlumnoData;
 import AccesoADatos.InscripcionData;
+import AccesoADatos.MateriaData;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import newpackage.entidades.Alumno;
+import newpackage.entidades.Inscripcion;
 import newpackage.entidades.Materia;
 
 /**
@@ -23,6 +26,8 @@ public class Inscripciones extends javax.swing.JInternalFrame {
     private AlumnoData alumnoData = new AlumnoData();
     private Alumno alumnoSeleccionado = new Alumno();
     private InscripcionData inscData = new InscripcionData();
+    private Inscripcion inscripcion;
+    private int idMateria;
     
     private DefaultTableModel modeloTabla = new DefaultTableModel(){ // Creo un modelo de tabla
         public boolean isCellEditable(int f, int c){
@@ -111,6 +116,11 @@ public class Inscripciones extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtMateriasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtMaterias);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -212,17 +222,27 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         List<Materia> listaMaterias = new ArrayList<Materia>();
         listaMaterias = inscData.obtenerMateriasNoCursadas(alumnoSeleccionado.getIdAlumno());
         limpiarTabla();
-        for (Materia materia : listaMaterias) {
-            cargarDatosEnLaTabla(materia);
+        if (listaMaterias.isEmpty()) {
+            jbInscribir.setEnabled(false); //Desactivar Boton Anular
+            JOptionPane.showMessageDialog(null, "El alumno se inscribio en todas las materias");
+        } else {
+            for (Materia materia : listaMaterias) {
+                cargarDatosEnLaTabla(materia);
+            }
         }
     }//GEN-LAST:event_jRbMateriasNoInscriptasActionPerformed
 
     private void jbInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInscribirActionPerformed
         // TODO add your handling code here:
+        inscripcion.setNota(-1); // Nota -1 para indicar que no tiene nota aun
+        inscData.guardarInscripcion(inscripcion);
+        jRbMateriasNoInscriptasActionPerformed(evt);
     }//GEN-LAST:event_jbInscribirActionPerformed
 
     private void jbAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAnularInscripcionActionPerformed
         // TODO add your handling code here:
+        inscData.borrarInscripcionMateriaAlumno(alumnoSeleccionado.getIdAlumno(), idMateria);
+        jRbMateriasInscriptasActionPerformed(evt);
     }//GEN-LAST:event_jbAnularInscripcionActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -244,8 +264,13 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         List<Materia> listaMaterias = new ArrayList<Materia>();
         listaMaterias = inscData.obtenerMateriasCursadas(alumnoSeleccionado.getIdAlumno());
         limpiarTabla();
-        for (Materia materia : listaMaterias) {
-            cargarDatosEnLaTabla(materia);
+        if (listaMaterias.isEmpty()) {
+            jbAnularInscripcion.setEnabled(false); //Desactivar Boton Anular
+            JOptionPane.showMessageDialog(null, "El alumno no tiene materias inscritas");
+        } else {
+            for (Materia materia : listaMaterias) {
+                cargarDatosEnLaTabla(materia);
+            }
         }
     }//GEN-LAST:event_jRbMateriasInscriptasActionPerformed
 
@@ -257,6 +282,16 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         jbAnularInscripcion.setEnabled(false); //Desactivar Boton Anular
         limpiarTabla();        
     }//GEN-LAST:event_jCbAlumnosMouseClicked
+
+    private void jtMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtMateriasMouseClicked
+        // TODO add your handling code here:
+        int filaSeleccionada = jtMaterias.getSelectedRow();
+        if (filaSeleccionada!=-1){
+            idMateria = (Integer)jtMaterias.getValueAt(filaSeleccionada, 0);
+            MateriaData matData = new MateriaData();
+            inscripcion = new Inscripcion(alumnoSeleccionado, matData.buscarMateria(idMateria));
+        }
+    }//GEN-LAST:event_jtMateriasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
