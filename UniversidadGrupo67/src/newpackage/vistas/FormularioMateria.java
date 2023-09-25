@@ -58,6 +58,8 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
+        
+        
     }
 
     /**

@@ -34,11 +34,11 @@ public class MateriaData {
             ps.executeUpdate(); // Ejecutar PreparedStatement
             ResultSet rs = ps.getGeneratedKeys(); //Devolver clave generada
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Materia agregada con el código: " + rs.getInt(1)); //Dialogo de materia agregada
+                JOptionPane.showMessageDialog(null, "Materia agregada con el código: " + rs.getInt(1), "INFORMACIÓN", 1); //Dialogo de materia agregada
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia." + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia.", "ERROR", 0);
         } finally {
             Conexion.cerrarConexion(con);
         }
@@ -56,10 +56,10 @@ public class MateriaData {
             ps.setBoolean(3, materia.isActivo()); //Asignacion de valores
             ps.setInt(4, materia.getIdMateria()); //Asignacion de valores
             ps.executeUpdate(); // Ejecutar PreparedStatement
-            JOptionPane.showMessageDialog(null, "Materia modificada.");
+            JOptionPane.showMessageDialog(null, "Materia modificada.", "INFORMACIÓN", 1);
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia." + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia.", "ERROR", 0);
         } finally {
             Conexion.cerrarConexion(con);
         }
@@ -86,11 +86,11 @@ public class MateriaData {
                     materia.setActivo(false); //Desmarcar RadioButton si estado es false
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "No existe una materia con ese código."); //Dialogo si no existe una materia con ese codigo
+                JOptionPane.showMessageDialog(null, "No existe una materia con ese código.", "INFORMACIÓN", 1); //Dialogo si no existe una materia con ese codigo
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia." + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia.", "ERROR", 0);
         } finally {
             Conexion.cerrarConexion(con); //Cerrar conexion
         }
@@ -108,13 +108,13 @@ public class MateriaData {
                 ps.setBoolean(1, false); //Asignacion de valores
                 ps.setInt(2, materia.getIdMateria()); //Asignacion de valores
                 ps.executeUpdate(); // Ejecutar PreparedStatement
-                JOptionPane.showMessageDialog(null, "Materia eliminada.");
+                JOptionPane.showMessageDialog(null, "Materia eliminada.", "INFORMACIÓN", 1);
                 ps.close();
             } else {
-                JOptionPane.showMessageDialog(null, "La materia ya ha sido eliminada."); //Dialogo de materia eliminada 
+                JOptionPane.showMessageDialog(null, "La materia ya ha sido eliminada.", "INFORMACIÓN", 1); //Dialogo de materia eliminada 
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia." + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia.", "ERROR", 0);
         } finally {
             Conexion.cerrarConexion(con); //Cerrar conexion
         }
@@ -137,7 +137,7 @@ public class MateriaData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia." + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia.", "ERROR", 0);
         } finally {
             Conexion.cerrarConexion(con); // Cerrar conexion
         }
