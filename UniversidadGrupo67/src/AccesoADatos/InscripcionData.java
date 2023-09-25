@@ -43,11 +43,11 @@ public class InscripcionData {
             ResultSet rs = ps.getGeneratedKeys(); //Devolver clave generada
             if (rs.next()) {
                 inscripcion.setIdInscripcion(rs.getInt(1)); // Asignar IdMateria
-                JOptionPane.showMessageDialog(null, "Inscripcion realizada. Cod. de Inscripcion: "+rs.getInt(1)); //Dialogo de materia agregada
+                JOptionPane.showMessageDialog(null, "Inscripción realizada (Código de inscripción: "+rs.getInt(1)+")", "INFORMACIÓN", 1); //Dialogo de materia agregada
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripción", "ERROR", 0);
         } finally {
             Conexion.cerrarConexion(con);
         }
@@ -74,7 +74,7 @@ public class InscripcionData {
             } 
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripción", "ERROR", 0);
         }
         Conexion.cerrarConexion(con);
         return incripciones;
@@ -102,7 +102,7 @@ public class InscripcionData {
             } 
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripción", "ERROR", 0);
         }
         Conexion.cerrarConexion(con);
         return incripcionesPorAlumno;
@@ -132,7 +132,7 @@ public class InscripcionData {
             } 
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripción", "ERROR", 0);
         }
         Conexion.cerrarConexion(con);
         return materiasCursadas;
@@ -161,7 +161,7 @@ public class InscripcionData {
             } 
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripción", "ERROR", 0);
         }
         Conexion.cerrarConexion(con);
         return materiasNoCursadas;
@@ -177,13 +177,13 @@ public class InscripcionData {
             ps.setInt(2, idMateria); //Asignacion de valores
             int res = ps.executeUpdate();
             if (res == 0) {
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar la inscripcion");
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar la inscripción", "MENSAJE", 1);
             } else {
-                JOptionPane.showMessageDialog(null, "Inscripcion eliminada con exito");
+                JOptionPane.showMessageDialog(null, "Inscripción eliminada con exito", "MENSAJE", 1);
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripción", "ERROR", 0);
         } finally {
             Conexion.cerrarConexion(con);
         }
@@ -200,13 +200,13 @@ public class InscripcionData {
             ps.setInt(3, idMateria); //Asignacion de valores
             int res = ps.executeUpdate();
             if (res == 0) {
-                JOptionPane.showMessageDialog(null, "No se pudo modificar la nota");
+                JOptionPane.showMessageDialog(null, "No se pudo modificar la nota", "MENSAJE", 1);
             } else {
-                JOptionPane.showMessageDialog(null, "Nota modificada con exito");
+                JOptionPane.showMessageDialog(null, "Nota modificada con exito", "MENSAJE", 1);
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripción", "ERROR", 0);
         } finally {
             Conexion.cerrarConexion(con);
         }
@@ -237,7 +237,7 @@ public class InscripcionData {
             } 
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripción", "ERROR", 0);
         }
         Conexion.cerrarConexion(con);
         return alumnos;

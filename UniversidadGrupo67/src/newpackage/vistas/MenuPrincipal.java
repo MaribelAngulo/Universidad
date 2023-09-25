@@ -92,7 +92,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu4);
 
-        jMIAdministracion.setText("Administracion");
+        jMIAdministracion.setText("Administración");
 
         jMManipulacionDeNotas.setText("Manipulacion de Notas");
         jMManipulacionDeNotas.addActionListener(new java.awt.event.ActionListener() {
