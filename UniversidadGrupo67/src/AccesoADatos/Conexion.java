@@ -23,7 +23,7 @@ public class Conexion {
         try {
             Class.forName("org.mariadb.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Driver no encontrado " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Driver no encontrado", "ERROR", 0);
         }
     }
 
@@ -36,7 +36,7 @@ public class Conexion {
             // ME CONECTO CON LA BASE DE DATOS SEGUN EL NOMBRE
             cnn = DriverManager.getConnection(URL+DB, USUARIO, PASSWORD);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Imposible conectarse con la base de datos " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Imposible conectarse con la base de datos", "ERROR", 0);
         }
         return cnn;
     }
@@ -47,7 +47,7 @@ public class Conexion {
                 mico.close();
 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Imposible cerrar la base de datos " + ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Imposible cerrar la base de datos", "ERROR", 0);
             }
         }
     }

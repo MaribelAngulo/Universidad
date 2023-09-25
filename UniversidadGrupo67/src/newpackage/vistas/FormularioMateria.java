@@ -7,8 +7,12 @@ package newpackage.vistas;
 
 import AccesoADatos.MateriaData;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import newpackage.entidades.Materia;
 
 /**
@@ -33,6 +37,29 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jBEliminar.setEnabled(false);
         jBGuardar.setEnabled(false);
         jBModificar.setEnabled(false);
+        jBBuscar.setEnabled(false);
+        jBBuscarNuevo.setVisible(false);
+        
+        jTfCodigo.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent de) {
+                 jBBuscar.setEnabled(true); // Activa el botón cuando se inserta texto
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent de) {
+                                if (jTfCodigo.getText().isEmpty()) {
+                    jBBuscar.setEnabled(false); // Desactiva el botón si no hay texto
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent de) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        
+        
     }
 
     /**
@@ -60,7 +87,9 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jBBuscarNuevo = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Formulario Materia");
         setPreferredSize(new java.awt.Dimension(616, 576));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -93,7 +122,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                 jBNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(jBNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, -1, -1));
+        getContentPane().add(jBNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
 
         jBGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-guardar-50.png"))); // NOI18N
@@ -143,8 +172,8 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jLabel3.setText("Codigo:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, 40));
+        jLabel3.setText("Código:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 70, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel4.setText("Nombre:");
@@ -153,6 +182,16 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel5.setText("Año:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, 30));
+
+        jBBuscarNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jBBuscarNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-búsqueda-26.png"))); // NOI18N
+        jBBuscarNuevo.setText("Buscar");
+        jBBuscarNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarNuevoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBBuscarNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -185,26 +224,28 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                 jRbEstado.setSelected(materia.isActivo());
                 if (!jTfNombre.getText().equals("")) {
                     jBModificar.setEnabled(true); //Actviar boton de modificar
+                    if(jRbEstado.isSelected()){
                     jBEliminar.setEnabled(true); //Activar boton de eliminar
+                    }
                 }
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
+            JOptionPane.showMessageDialog(null, "Ingrese un número válido.");
             return;
         }
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        
+        jBBuscar.setEnabled(false);
         try { //Bloque TRY-CATCH para verificar si el codigo es valido.
             materia.setIdMateria(Integer.parseInt(jTfCodigo.getText()));
             materia.setNombre(jTfNombre.getText());
             materia.setAnioMateria(Integer.parseInt(jTfAnio.getText()));
             materia.setActivo(jRbEstado.isSelected());
             materiaData.eliminarMateria(materia);
-            jBBuscar.doClick();
+            jRbEstado.setSelected(false);
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
+            JOptionPane.showMessageDialog(null, "Ingrese un número válido.");
             return;
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
@@ -226,6 +267,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             mdfActivado = true; //Pasa a true el mdfActivado
             jBEliminar.setEnabled(false); //Desactiva Button Eliminar
             jBGuardar.setEnabled(true); //Activa el Button Guardar
+            jBBuscar.setEnabled(false);
         } else {
             jTfNombre.setEditable(false); //Activa TextField Nombre
             jTfNombre.setBackground(Color.gray); //Cambia de color a blanco
@@ -237,17 +279,18 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             mdfActivado = false; //Pasa a false el mdfActivado
             jBEliminar.setEnabled(true); //Activa Button Eliminar
             jBGuardar.setEnabled(false); //Desactiva el Button Guardar
+            jBBuscar.setEnabled(false);
         }
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-                int codigo = 0;
-
+        int codigo = 0;
+        jBBuscar.setEnabled(false);
         if (mdfActivado) {
             try { //Bloque TRY-CATCH para verificar si el codigo es valido.
                 codigo = Integer.parseInt(jTfCodigo.getText());
                 if (jTfNombre.getText().equals("")) { //Verifica que no sea una cadena vacia
-                    JOptionPane.showMessageDialog(null, "Ingrese un nombre valido"); //Dialogo de nombre invalido
+                    JOptionPane.showMessageDialog(null, "Ingrese un número válido."); //Dialogo de nombre invalido
                     return;
                 }
                 materia.setNombre(jTfNombre.getText());
@@ -257,12 +300,12 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                 materiaData.modificarMateria(materia);
                 jBModificar.doClick(); //Simulacion de click en el boton modificar para desactivar botones y textfield
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
+                JOptionPane.showMessageDialog(null, "Ingrese un número válido.");
                 return;
             }
         } else {
             if (jTfNombre.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Ingrese un nombre valido"); //Dialogo de nombre invalido
+                JOptionPane.showMessageDialog(null, "Ingrese un número válido."); //Dialogo de nombre invalido
                 return;
             }
             try{
@@ -271,31 +314,13 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             materiaData.agregarMateria(materia);
             jBNuevo.doClick();
             }catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Ingrese un numero valido");
+                JOptionPane.showMessageDialog(null, "Ingrese un número válido.");
                 return;
             }
         }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
-    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        
-        if (gdActivado == false) {
-            jTfNombre.setEditable(true); //Activar TextField Nombre
-            jTfNombre.setBackground(Color.white); //Cambiar de color a white
-            jTfNombre.setText(""); //Vaciar TextField
-            jTfAnio.setEditable(true); //Activar TextField 
-            jTfAnio.setBackground(Color.white); //Cambiar de color a white
-            jTfAnio.setText(""); //Vaciar TextField
-            jRbEstado.setEnabled(false); //Desactivar RadioButton Estado
-            jRbEstado.setSelected(true); //Seleccionar RadioButton Estado
-            jTfCodigo.setEditable(false); //Desactivar TextField Codigo
-            jTfCodigo.setBackground(Color.gray); //Cambiar de color a gray
-            jTfCodigo.setText(""); //Vaciar TextField
-            jBModificar.setEnabled(false); //Desactivar boton Modificar
-            jBEliminar.setEnabled(false); //Desactivar boton Eliminar
-            jBGuardar.setEnabled(true); //Activar boton Guardar
-            gdActivado = true;
-        } else {
+    private void jBBuscarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarNuevoActionPerformed
             jTfNombre.setEditable(false);
             jTfNombre.setBackground(Color.gray);
             jTfAnio.setEditable(false);
@@ -310,43 +335,51 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             jTfAnio.setText(""); //Vaciar TextField
             jTfNombre.setText(""); //Vaciar TextField
             jRbEstado.setSelected(false); //Deseleccionar RadioButton Estado
+            jBNuevo.setVisible(true);
+            jBBuscarNuevo.setVisible(false);
             gdActivado = false;
-        }
+    }//GEN-LAST:event_jBBuscarNuevoActionPerformed
+
+    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+        jBBuscar.setEnabled(false);
+            jTfNombre.setEditable(true); //Activar TextField Nombre
+            jTfNombre.setBackground(Color.white); //Cambiar de color a white
+            jTfNombre.setText(""); //Vaciar TextField
+            jTfAnio.setEditable(true); //Activar TextField
+            jTfAnio.setBackground(Color.white); //Cambiar de color a white
+            jTfAnio.setText(""); //Vaciar TextField
+            jRbEstado.setEnabled(false); //Desactivar RadioButton Estado
+            jRbEstado.setSelected(true); //Seleccionar RadioButton Estado
+            jTfCodigo.setEditable(false); //Desactivar TextField Codigo
+            jTfCodigo.setBackground(Color.gray); //Cambiar de color a gray
+            jTfCodigo.setText(""); //Vaciar TextField
+            jBModificar.setEnabled(false); //Desactivar boton Modificar
+            jBEliminar.setEnabled(false); //Desactivar boton Eliminar
+            jBGuardar.setEnabled(true); //Activar boton Guardar
+            jBNuevo.setVisible(false);
+            jBBuscarNuevo.setVisible(true);
+            gdActivado = true;
     }//GEN-LAST:event_jBNuevoActionPerformed
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
+    private javax.swing.JButton jBBuscarNuevo;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBNuevo;
     private javax.swing.JButton jBSalir;
-    private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JInternalFrame jInternalFrame2;
-    private javax.swing.JInternalFrame jInternalFrame3;
-    private javax.swing.JInternalFrame jInternalFrame4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRbEstado;
-    private javax.swing.JRadioButton jRbEstado1;
-    private javax.swing.JRadioButton jRbEstado2;
-    private javax.swing.JRadioButton jRbEstado3;
-    private javax.swing.JRadioButton jRbEstado4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTfAnio;
     private javax.swing.JTextField jTfCodigo;
     private javax.swing.JTextField jTfNombre;
-    private javax.swing.JTextField jTfNombre1;
-    private javax.swing.JTextField jTfNombre2;
-    private javax.swing.JTextField jTfNombre3;
-    private javax.swing.JTextField jTfNombre4;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
     // End of variables declaration//GEN-END:variables
 }

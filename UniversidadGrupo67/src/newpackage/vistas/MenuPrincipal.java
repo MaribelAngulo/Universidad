@@ -5,6 +5,8 @@
  */
 package newpackage.vistas;
 
+import javax.swing.JInternalFrame;
+
 /**
  *
  * @author Usuario
@@ -92,7 +94,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu4);
 
-        jMIAdministracion.setText("Administracion");
+        jMIAdministracion.setText("Administración");
 
         jMManipulacionDeNotas.setText("Manipulacion de Notas");
         jMManipulacionDeNotas.addActionListener(new java.awt.event.ActionListener() {
@@ -146,42 +148,60 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMIFormularioAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFormularioAlumnoActionPerformed
         // TODO add your handling code here:
-        FormularioAlumnos ventana=new FormularioAlumnos();
+        FormularioAlumnos ventana = new FormularioAlumnos();
         jPanelPrincipal.removeAll();
         jPanelPrincipal.repaint();
         jPanelPrincipal.add(ventana);
         ventana.setVisible(true);
+
+        int x = (jPanelPrincipal.getWidth() - ventana.getWidth()) / 2;
+        int y = (jPanelPrincipal.getHeight() - ventana.getHeight()) / 2;
+        ventana.setLocation(x, y);
+
     }//GEN-LAST:event_jMIFormularioAlumnoActionPerformed
 
     private void jmMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMateriaActionPerformed
         // TODO add your handling code here:
-        FormularioMateria ventana=new FormularioMateria();
+        FormularioMateria ventana = new FormularioMateria();
         jPanelPrincipal.removeAll();
         jPanelPrincipal.repaint();
         jPanelPrincipal.add(ventana);
         ventana.setVisible(true);
+
+        int x = (jPanelPrincipal.getWidth() - ventana.getWidth()) / 2;
+        int y = (jPanelPrincipal.getHeight() - ventana.getHeight()) / 2;
+        ventana.setLocation(x, y);
     }//GEN-LAST:event_jmMateriaActionPerformed
 
     private void jMManipulacionDeNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMManipulacionDeNotasActionPerformed
         // TODO add your handling code here:
-        CargaDeNotas ventana=new CargaDeNotas();
+        CargaDeNotas ventana = new CargaDeNotas();
         jPanelPrincipal.removeAll();
         jPanelPrincipal.repaint();
         jPanelPrincipal.add(ventana);
         ventana.setVisible(true);
+
+        int x = (jPanelPrincipal.getWidth() - ventana.getWidth()) / 2;
+        int y = (jPanelPrincipal.getHeight() - ventana.getHeight()) / 2;
+        ventana.setLocation(x, y);
     }//GEN-LAST:event_jMManipulacionDeNotasActionPerformed
 
     private void jMIInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIInscripcionesActionPerformed
         // TODO add your handling code here:
-        Inscripciones ventana=new Inscripciones();
+        Inscripciones ventana = new Inscripciones();
         jPanelPrincipal.removeAll();
         jPanelPrincipal.repaint();
         jPanelPrincipal.add(ventana);
         ventana.setVisible(true);
+
+        int x = (jPanelPrincipal.getWidth() - ventana.getWidth()) / 2;
+        int y = (jPanelPrincipal.getHeight() - ventana.getHeight()) / 2;
+        ventana.setLocation(x, y);
     }//GEN-LAST:event_jMIInscripcionesActionPerformed
 
     private void jMIAlumnosXMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAlumnosXMateriaActionPerformed
@@ -191,6 +211,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanelPrincipal.repaint();
         jPanelPrincipal.add(ventana);
         ventana.setVisible(true);
+
+        int x = (jPanelPrincipal.getWidth() - ventana.getWidth()) / 2;
+        int y = (jPanelPrincipal.getHeight() - ventana.getHeight()) / 2;
+        ventana.setLocation(x, y);
     }//GEN-LAST:event_jMIAlumnosXMateriaActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
