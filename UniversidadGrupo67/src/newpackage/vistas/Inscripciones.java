@@ -89,7 +89,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
 
         jbAnularInscripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbAnularInscripcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-basura-501.png"))); // NOI18N
-        jbAnularInscripcion.setText("Anular Inscripcion");
+        jbAnularInscripcion.setText("Anular Inscripción");
         jbAnularInscripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAnularInscripcionActionPerformed(evt);
@@ -124,7 +124,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtMaterias);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setText("Formulario de Inscripcion");
+        jLabel1.setText("Formulario de Inscripción");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel2.setText("Selección de alumno:");
@@ -216,7 +216,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
     private void jRbMateriasNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbMateriasNoInscriptasActionPerformed
         // TODO add your handling code here:
         jbAnularInscripcion.setEnabled(false); //Desactivar Boton Anular
-        jbInscribir.setEnabled(true); //Activar Boton Inscribir
+        jbInscribir.setEnabled(false); //Desactivar Boton Inscribir
         jRbMateriasInscriptas.setSelected(false); //Des-seleccionar RadioButton Materias Inscriptas
         //List<Materia> obtenerMateriasNoCursadas(alumnoSeleccionado.getIdAlumno())
         List<Materia> listaMaterias = new ArrayList<Materia>();
@@ -224,7 +224,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         limpiarTabla();
         if (listaMaterias.isEmpty()) {
             jbInscribir.setEnabled(false); //Desactivar Boton Anular
-            JOptionPane.showMessageDialog(null, "El alumno se inscribio en todas las materias");
+            JOptionPane.showMessageDialog(null, "El alumno se inscribió en todas las materias", "MENSAJE", 1);
         } else {
             for (Materia materia : listaMaterias) {
                 cargarDatosEnLaTabla(materia);
@@ -258,7 +258,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
     private void jRbMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbMateriasInscriptasActionPerformed
         // TODO add your handling code here:
         jbInscribir.setEnabled(false); //Desactivar Boton Inscribir
-        jbAnularInscripcion.setEnabled(true); //Activar Boton Anular
+        jbAnularInscripcion.setEnabled(false); //Desactivar Boton Anular
         jRbMateriasNoInscriptas.setSelected(false); //Des-seleccionar RadioButton Materias No Inscriptas
         //Llenar la tabla List<Materia> obtenerMateriasCursadas(alumnoSeleccionado.getIdAlumno()) InscripcionData
         List<Materia> listaMaterias = new ArrayList<Materia>();
@@ -266,7 +266,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         limpiarTabla();
         if (listaMaterias.isEmpty()) {
             jbAnularInscripcion.setEnabled(false); //Desactivar Boton Anular
-            JOptionPane.showMessageDialog(null, "El alumno no tiene materias inscritas");
+            JOptionPane.showMessageDialog(null, "El alumno no tiene materias inscriptas", "MENSAJE", 1);
         } else {
             for (Materia materia : listaMaterias) {
                 cargarDatosEnLaTabla(materia);
@@ -290,6 +290,14 @@ public class Inscripciones extends javax.swing.JInternalFrame {
             idMateria = (Integer)jtMaterias.getValueAt(filaSeleccionada, 0);
             MateriaData matData = new MateriaData();
             inscripcion = new Inscripcion(alumnoSeleccionado, matData.buscarMateria(idMateria));
+            if(jRbMateriasNoInscriptas.isSelected()){
+                jbInscribir.setEnabled(true); //Desactivar Boton Inscribir
+                jbAnularInscripcion.setEnabled(false); //Activar Boton Anular
+            }
+            if(jRbMateriasInscriptas.isSelected()){
+                jbInscribir.setEnabled(false); //Desactivar Boton Inscribir
+                jbAnularInscripcion.setEnabled(true); //Activar Boton Anular
+            }
         }
     }//GEN-LAST:event_jtMateriasMouseClicked
 
