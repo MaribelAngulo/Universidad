@@ -63,7 +63,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMIAdministracion">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Administracion"/>
+            <Property name="text" type="java.lang.String" value="Administraci&#xf3;n"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMManipulacionDeNotas">
