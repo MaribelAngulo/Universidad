@@ -101,13 +101,13 @@ public class ListadoDeAlumnosPorMateria extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 590, 290));
 
         jRBAlumnos.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jRBAlumnos.setText("Incluir inactivos");
+        jRBAlumnos.setText("Incluir alumnos inactivos");
         jRBAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRBAlumnosActionPerformed(evt);
             }
         });
-        getContentPane().add(jRBAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 140, 30));
+        getContentPane().add(jRBAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 190, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setText("Alumnos por materia");
@@ -129,7 +129,7 @@ public class ListadoDeAlumnosPorMateria extends javax.swing.JInternalFrame {
         getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 540, -1, -1));
 
         jRBMaterias.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jRBMaterias.setText("Incluir inactivas");
+        jRBMaterias.setText("Incluir materias inactivas");
         jRBMaterias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRBMateriasActionPerformed(evt);
