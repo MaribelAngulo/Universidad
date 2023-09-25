@@ -3,6 +3,7 @@ package newpackage.vistas;
 import AccesoADatos.AlumnoData;
 import AccesoADatos.InscripcionData;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import newpackage.entidades.Alumno;
@@ -23,7 +24,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
                 jbtnGuardar.setEnabled(true);
             } else {
                 // NO ES UN NUMERO
-                JOptionPane.showMessageDialog(null, "Valor no válido");
+                JOptionPane.showMessageDialog(null, "Valor no válido","Error",0);
             }
         }
 
@@ -58,16 +59,21 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
     //ESTE METODO CARGA LOS ALUMNOS
     private void cargarAlumnos() {
 
-        AlumnoData alumnoData = new AlumnoData();
+        InscripcionData inscData=new InscripcionData();
+        List<Materia> listaMaterias = new ArrayList<Materia>();
+               AlumnoData alumnoData = new AlumnoData();
         for (Alumno alumno : alumnoData.listarAlumnos()) {
+             listaMaterias = inscData.obtenerMateriasCursadas(alumno.getIdAlumno());
+            if (!listaMaterias.isEmpty()){
             jcboxAlumnos.addItem(alumno);
+            }
         }
     }
 
     //ESTE METODO CARGA EL MODELO DE LA TABLA
     private void cargarTabla() {
 
-        modelo.addColumn("Codigo");
+        modelo.addColumn("Código");
         modelo.addColumn("Nombre");
         modelo.addColumn("Nota");
         jTableAlumnoNota.setModel(modelo);
@@ -114,6 +120,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableAlumnoNota);
 
+        jbtnSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-salir-50.png"))); // NOI18N
         jbtnSalir.setText("Salir");
         jbtnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -122,6 +129,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
             }
         });
 
+        jbtnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbtnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-guardar-50.png"))); // NOI18N
         jbtnGuardar.setText("Guardar");
         jbtnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +187,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnGuardar)
                     .addComponent(jbtnSalir))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -246,7 +254,9 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
             double nota= Double.valueOf((String) jTableAlumnoNota.getValueAt(i, 2));
             inscripcionData.actualizarNota(alumnoSeleccionado.getIdAlumno(), materia, nota);                
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
+                if (!(((String) jTableAlumnoNota.getValueAt(i, 2)).equals("Sin Nota"))){
+                JOptionPane.showMessageDialog(this, e.getMessage(),"Información",1);
+                }
             }
         jbtnGuardar.setEnabled(false);
         }

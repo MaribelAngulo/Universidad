@@ -27,10 +27,10 @@ public class AlumnoData {
             //ENVIO LA SENTENCIA SQL Y LA EJECUTO
             PreparedStatement ps = con.prepareStatement(sql);
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Alumno añadido con exito.");
+            JOptionPane.showMessageDialog(null, "Alumno añadido con éxito.","Información",1);
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error Al Insertar Alumno" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error Al Insertar Alumno" + ex.getMessage(),"Error",0);
         }
         //CUANDO TERMINA TODO CIERRO MI CONEXION
         Conexion.cerrarConexion(con);
@@ -52,13 +52,13 @@ public class AlumnoData {
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
+                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.","Información",1);
             } else {
-                JOptionPane.showMessageDialog(null, "El alumno no existe");
+                JOptionPane.showMessageDialog(null, "El alumno no existe","Información",1);
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage(),"Error",0);
         }
         //CUANDO TERMINA TODO CIERRO MI CONEXION
         Conexion.cerrarConexion(con);
@@ -75,13 +75,13 @@ public class AlumnoData {
             PreparedStatement ps = con.prepareStatement(sql);
             int res = ps.executeUpdate();
             if (res == 1) {
-                JOptionPane.showMessageDialog(null, "Alumno eliminado ....");
+                JOptionPane.showMessageDialog(null, "Alumno eliminado ....","Información",1);
             } else {
-                JOptionPane.showMessageDialog(null, "Imposible eliminar alumno ...");
+                JOptionPane.showMessageDialog(null, "Imposible eliminar alumno ...","Información",1);
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al Eliminar" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al Eliminar" + ex.getMessage(),"Error",0);
         }
         //CUANDO TERMINA TODO CIERRO MI CONEXION
         Conexion.cerrarConexion(con);
@@ -105,11 +105,11 @@ public class AlumnoData {
                 alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setActivo(true);
             } else {
-                JOptionPane.showMessageDialog(null, "No existe el alumno");
+                JOptionPane.showMessageDialog(null, "No éxiste el alumno","Información",1);
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage(),"Error",0);
         }
         Conexion.cerrarConexion(con);
         return alumno;
@@ -128,7 +128,7 @@ public class AlumnoData {
                 estado = true;
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage(),"Error",0);
         }
         Conexion.cerrarConexion(con);
         return estado;
@@ -155,7 +155,7 @@ public class AlumnoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage(),"Error",0);
         }
         Conexion.cerrarConexion(con);
         return alumno;
@@ -182,7 +182,7 @@ public class AlumnoData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alumno " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage(),"Error",0);
         }
         Conexion.cerrarConexion(con);
         return alumnos;
@@ -200,12 +200,12 @@ public class AlumnoData {
             PreparedStatement ps = con.prepareStatement(sql);
             int res = ps.executeUpdate();
             if (res == 1) {
-                JOptionPane.showMessageDialog(null, "Alumno Activado");
+                JOptionPane.showMessageDialog(null, "Alumno activado","Información",1);
             } else {
-                JOptionPane.showMessageDialog(null, "Imposible Activar alumno");
+                JOptionPane.showMessageDialog(null, "Imposible activar alumno","Información",1);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error en registro" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error en registro" + ex.getMessage(),"Error",0);
         }
         //CUANDO TERMINA TODO CIERRO MI CONEXION
         Conexion.cerrarConexion(con);
