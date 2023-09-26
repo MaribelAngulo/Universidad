@@ -135,7 +135,7 @@ public class ListadoDeAlumnosPorMateria extends javax.swing.JInternalFrame {
                 jRBMateriasActionPerformed(evt);
             }
         });
-        getContentPane().add(jRBMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, -1, 30));
+        getContentPane().add(jRBMaterias, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 190, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
