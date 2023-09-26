@@ -279,7 +279,8 @@ public class FormularioAlumnos extends javax.swing.JInternalFrame {
         AlumnoData alumnoData = new AlumnoData(); // INSTANCIO ALUMNO DATA PARA ACCEDER A LA BASE DE DATOS
         Alumno alumno = new Alumno();  //CREO UN ALUMNO
 
-        if (jTextDni.getText().isEmpty()) { //VERIFICO QUE DNI SEA DISTINTO DE VACIO
+        if (jTextDni.getText().isEmpty() || jTextDni.getText().length()>10) { //VERIFICO QUE DNI SEA DISTINTO DE VACIO
+            jTextDni.setText("");
             JOptionPane.showMessageDialog(this, "Error Ingresar el DNI","Información",1);
         } else {
             try {
