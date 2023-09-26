@@ -24,7 +24,9 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
                 jbtnGuardar.setEnabled(true);
             } else {
                 // NO ES UN NUMERO
+                if (!value.equals((Object) "Sin Nota")){
                 JOptionPane.showMessageDialog(null, "Valor no válido","Error",0);
+            }
             }
         }
 
@@ -245,6 +247,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
     //PRESIONO EL BOTON GUARDAR
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
 
+        boolean estado=false;
         InscripcionData inscripcionData = new InscripcionData();//INSTANCIO INSCRIPCION
         Alumno alumnoSeleccionado = new Alumno(); //CREO UN ALUMNO
         alumnoSeleccionado = (Alumno) jcboxAlumnos.getSelectedItem(); //GUARDO EL ALUMNO SELECCIONADO
@@ -252,13 +255,18 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
             try {
             int materia= (Integer) jTableAlumnoNota.getValueAt(i, 0);
             double nota= Double.valueOf((String) jTableAlumnoNota.getValueAt(i, 2));
-            inscripcionData.actualizarNota(alumnoSeleccionado.getIdAlumno(), materia, nota);                
+            estado=inscripcionData.actualizarNota(alumnoSeleccionado.getIdAlumno(), materia, nota);                
             } catch (NumberFormatException e) {
                 if (!(((String) jTableAlumnoNota.getValueAt(i, 2)).equals("Sin Nota"))){
                 JOptionPane.showMessageDialog(this, e.getMessage(),"Información",1);
                 }
             }
         jbtnGuardar.setEnabled(false);
+        }
+        if (!estado) {
+            JOptionPane.showMessageDialog(null, "No se pudo completar la tarea", "MENSAJE", 1);
+        }else {
+            JOptionPane.showMessageDialog(null, "Notas Modificadas", "MENSAJE", 1);
         }
 
     }//GEN-LAST:event_jbtnGuardarActionPerformed
