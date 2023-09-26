@@ -189,9 +189,11 @@ public class InscripcionData {
         }
     }
     
-    public void actualizarNota(int idAlumno, int idMateria, double nota){
+    public boolean actualizarNota(int idAlumno, int idMateria, double nota){
         // Consulta sql para insertar materia
         String sql = "UPDATE inscripcion SET nota=? WHERE idAlumno =? AND idMateria=?";
+        //devuelve si se pudo o  no cambiar la nota
+        boolean estado=false;
         try {
             con = Conexion.getConexion(); //Conexion con la base de datos
             PreparedStatement ps = con.prepareStatement(sql); //PreparedStatement con la consulta sql
@@ -200,9 +202,11 @@ public class InscripcionData {
             ps.setInt(3, idMateria); //Asignacion de valores
             int res = ps.executeUpdate();
             if (res == 0) {
-                JOptionPane.showMessageDialog(null, "No se pudo modificar la nota", "MENSAJE", 1);
+                estado= false;
+                //JOptionPane.showMessageDialog(null, "No se pudo modificar la nota", "MENSAJE", 1);
             } else {
-                JOptionPane.showMessageDialog(null, "Nota modificada con exito", "MENSAJE", 1);
+                estado= true;
+                //JOptionPane.showMessageDialog(null, "Nota modificada con exito", "MENSAJE", 1);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -210,6 +214,7 @@ public class InscripcionData {
         } finally {
             Conexion.cerrarConexion(con);
         }
+        return estado;
     }
     
     public List<Alumno> obtenerAlumnosXMateria(int idMateria){
