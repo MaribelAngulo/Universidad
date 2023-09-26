@@ -5,6 +5,9 @@
  */
 package newpackage.vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 
 /**
@@ -18,6 +21,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.png")).getImage());
     }
 
     /**
@@ -33,7 +38,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jPanelPrincipal = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/Fondo-Principal.png"));
+        Image image = icon.getImage();
+        jPanelPrincipal = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar2 = new javax.swing.JMenuBar();
         jmAlumnos = new javax.swing.JMenu();
         jMIFormularioAlumno = new javax.swing.JMenuItem();
@@ -55,6 +66,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Universidad Grupo 67");
         setPreferredSize(new java.awt.Dimension(1200, 800));
 
         jPanelPrincipal.setPreferredSize(new java.awt.Dimension(600, 300));

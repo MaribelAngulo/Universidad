@@ -39,16 +39,16 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jBModificar.setEnabled(false);
         jBBuscar.setEnabled(false);
         jBBuscarNuevo.setVisible(false);
-        
+
         jTfCodigo.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent de) {
-                 jBBuscar.setEnabled(true); // Activa el botón cuando se inserta texto
+                jBBuscar.setEnabled(true); // Activa el botón cuando se inserta texto
             }
 
             @Override
             public void removeUpdate(DocumentEvent de) {
-                                if (jTfCodigo.getText().isEmpty()) {
+                if (jTfCodigo.getText().isEmpty()) {
                     jBBuscar.setEnabled(false); // Desactiva el botón si no hay texto
                 }
             }
@@ -58,8 +58,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
-        
-        
+
     }
 
     /**
@@ -201,7 +200,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTfCodigoActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        
+
         jTfNombre.setEditable(false);
         jTfNombre.setBackground(Color.gray);
         jTfAnio.setEditable(false);
@@ -224,13 +223,13 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                 jRbEstado.setSelected(materia.isActivo());
                 if (!jTfNombre.getText().equals("")) {
                     jBModificar.setEnabled(true); //Actviar boton de modificar
-                    if(jRbEstado.isSelected()){
-                    jBEliminar.setEnabled(true); //Activar boton de eliminar
+                    if (jRbEstado.isSelected()) {
+                        jBEliminar.setEnabled(true); //Activar boton de eliminar
                     }
                 }
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Ingrese un número válido.");
+            JOptionPane.showMessageDialog(null, "Ingrese un número válido.", "INFORMACIÓN", 1);
             return;
         }
     }//GEN-LAST:event_jBBuscarActionPerformed
@@ -245,7 +244,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             materiaData.eliminarMateria(materia);
             jRbEstado.setSelected(false);
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Ingrese un número válido.");
+            JOptionPane.showMessageDialog(null, "Ingrese un número válido.", "INFORMACIÓN", 1);
             return;
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
@@ -255,7 +254,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-                //If para activar tocando Button Modificar y al volver a tocarlo lo desactiva
+        //If para activar tocando Button Modificar y al volver a tocarlo lo desactiva
         if (mdfActivado == false) {
             jTfNombre.setEditable(true); //Activa TextField Nombre
             jTfNombre.setBackground(Color.white); //Cambia de color a blanco
@@ -290,7 +289,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             try { //Bloque TRY-CATCH para verificar si el codigo es valido.
                 codigo = Integer.parseInt(jTfCodigo.getText());
                 if (jTfNombre.getText().equals("")) { //Verifica que no sea una cadena vacia
-                    JOptionPane.showMessageDialog(null, "Ingrese un número válido."); //Dialogo de nombre invalido
+                    JOptionPane.showMessageDialog(null, "Ingrese un número válido.", "INFORMACIÓN", 1); //Dialogo de nombre invalido
                     return;
                 }
                 materia.setNombre(jTfNombre.getText());
@@ -300,68 +299,67 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                 materiaData.modificarMateria(materia);
                 jBModificar.doClick(); //Simulacion de click en el boton modificar para desactivar botones y textfield
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Ingrese un número válido.");
+                JOptionPane.showMessageDialog(null, "Ingrese un número válido.", "INFORMACIÓN", 1);
                 return;
             }
         } else {
             if (jTfNombre.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Ingrese un número válido."); //Dialogo de nombre invalido
+                JOptionPane.showMessageDialog(null, "Ingrese un número válido.", "INFORMACIÓN", 1); //Dialogo de nombre invalido
                 return;
             }
-            try{
-            materia.setNombre(jTfNombre.getText());
-            materia.setAnioMateria(Integer.parseInt(jTfAnio.getText()));
-            materiaData.agregarMateria(materia);
-            jBNuevo.doClick();
-            }catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Ingrese un número válido.");
+            try {
+                materia.setNombre(jTfNombre.getText());
+                materia.setAnioMateria(Integer.parseInt(jTfAnio.getText()));
+                materiaData.agregarMateria(materia);
+                jBNuevo.doClick();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Ingrese un número válido.", "INFORMACIÓN", 1);
                 return;
             }
         }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBBuscarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarNuevoActionPerformed
-            jTfNombre.setEditable(false);
-            jTfNombre.setBackground(Color.gray);
-            jTfAnio.setEditable(false);
-            jTfAnio.setBackground(Color.gray);
-            jRbEstado.setEnabled(false);
-            jBEliminar.setEnabled(false);
-            jBGuardar.setEnabled(false);
-            jBModificar.setEnabled(false);
-            jTfCodigo.setEditable(true); //Desactivar TextField Codigo
-            jTfCodigo.setBackground(Color.white); //Cambiar de color a white
-            jTfCodigo.setText(""); //Vaciar TextField
-            jTfAnio.setText(""); //Vaciar TextField
-            jTfNombre.setText(""); //Vaciar TextField
-            jRbEstado.setSelected(false); //Deseleccionar RadioButton Estado
-            jBNuevo.setVisible(true);
-            jBBuscarNuevo.setVisible(false);
-            gdActivado = false;
+        jTfNombre.setEditable(false);
+        jTfNombre.setBackground(Color.gray);
+        jTfAnio.setEditable(false);
+        jTfAnio.setBackground(Color.gray);
+        jRbEstado.setEnabled(false);
+        jBEliminar.setEnabled(false);
+        jBGuardar.setEnabled(false);
+        jBModificar.setEnabled(false);
+        jTfCodigo.setEditable(true); //Desactivar TextField Codigo
+        jTfCodigo.setBackground(Color.white); //Cambiar de color a white
+        jTfCodigo.setText(""); //Vaciar TextField
+        jTfAnio.setText(""); //Vaciar TextField
+        jTfNombre.setText(""); //Vaciar TextField
+        jRbEstado.setSelected(false); //Deseleccionar RadioButton Estado
+        jBNuevo.setVisible(true);
+        jBBuscarNuevo.setVisible(false);
+        gdActivado = false;
     }//GEN-LAST:event_jBBuscarNuevoActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
         jBBuscar.setEnabled(false);
-            jTfNombre.setEditable(true); //Activar TextField Nombre
-            jTfNombre.setBackground(Color.white); //Cambiar de color a white
-            jTfNombre.setText(""); //Vaciar TextField
-            jTfAnio.setEditable(true); //Activar TextField
-            jTfAnio.setBackground(Color.white); //Cambiar de color a white
-            jTfAnio.setText(""); //Vaciar TextField
-            jRbEstado.setEnabled(false); //Desactivar RadioButton Estado
-            jRbEstado.setSelected(true); //Seleccionar RadioButton Estado
-            jTfCodigo.setEditable(false); //Desactivar TextField Codigo
-            jTfCodigo.setBackground(Color.gray); //Cambiar de color a gray
-            jTfCodigo.setText(""); //Vaciar TextField
-            jBModificar.setEnabled(false); //Desactivar boton Modificar
-            jBEliminar.setEnabled(false); //Desactivar boton Eliminar
-            jBGuardar.setEnabled(true); //Activar boton Guardar
-            jBNuevo.setVisible(false);
-            jBBuscarNuevo.setVisible(true);
-            gdActivado = true;
+        jTfNombre.setEditable(true); //Activar TextField Nombre
+        jTfNombre.setBackground(Color.white); //Cambiar de color a white
+        jTfNombre.setText(""); //Vaciar TextField
+        jTfAnio.setEditable(true); //Activar TextField
+        jTfAnio.setBackground(Color.white); //Cambiar de color a white
+        jTfAnio.setText(""); //Vaciar TextField
+        jRbEstado.setEnabled(false); //Desactivar RadioButton Estado
+        jRbEstado.setSelected(true); //Seleccionar RadioButton Estado
+        jTfCodigo.setEditable(false); //Desactivar TextField Codigo
+        jTfCodigo.setBackground(Color.gray); //Cambiar de color a gray
+        jTfCodigo.setText(""); //Vaciar TextField
+        jBModificar.setEnabled(false); //Desactivar boton Modificar
+        jBEliminar.setEnabled(false); //Desactivar boton Eliminar
+        jBGuardar.setEnabled(true); //Activar boton Guardar
+        jBNuevo.setVisible(false);
+        jBBuscarNuevo.setVisible(true);
+        gdActivado = true;
     }//GEN-LAST:event_jBNuevoActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
