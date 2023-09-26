@@ -68,7 +68,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMManipulacionDeNotas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Manipulacion de Notas"/>
+                <Property name="text" type="java.lang.String" value="Manipulaci&#xf3;n de Notas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMManipulacionDeNotasActionPerformed"/>
