@@ -96,7 +96,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMIAdministracion.setText("Administración");
 
-        jMManipulacionDeNotas.setText("Manipulacion de Notas");
+        jMManipulacionDeNotas.setText("Manipulación de Notas");
         jMManipulacionDeNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMManipulacionDeNotasActionPerformed(evt);

@@ -120,6 +120,9 @@ public class Inscripciones extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtMateriasMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jtMateriasMousePressed(evt);
+            }
         });
         jScrollPane1.setViewportView(jtMaterias);
 
@@ -135,6 +138,9 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         jCbAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCbAlumnosMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jCbAlumnosMousePressed(evt);
             }
         });
         jCbAlumnos.addActionListener(new java.awt.event.ActionListener() {
@@ -275,17 +281,26 @@ public class Inscripciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRbMateriasInscriptasActionPerformed
 
     private void jCbAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCbAlumnosMouseClicked
+        
+    }//GEN-LAST:event_jCbAlumnosMouseClicked
+
+    private void jtMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtMateriasMouseClicked
+
+    }//GEN-LAST:event_jtMateriasMouseClicked
+
+    private void jCbAlumnosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCbAlumnosMousePressed
         // TODO add your handling code here:
         jRbMateriasNoInscriptas.setSelected(false); //Des-seleccionar RadioButton Materias No Inscriptas
         jRbMateriasInscriptas.setSelected(false); //Des-seleccionar RadioButton Materias Inscriptas
         jbInscribir.setEnabled(false); //Desactivar Boton Inscribir
         jbAnularInscripcion.setEnabled(false); //Desactivar Boton Anular
-        limpiarTabla();        
-    }//GEN-LAST:event_jCbAlumnosMouseClicked
+        limpiarTabla();
+    }//GEN-LAST:event_jCbAlumnosMousePressed
 
-    private void jtMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtMateriasMouseClicked
+    private void jtMateriasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtMateriasMousePressed
         // TODO add your handling code here:
-        int filaSeleccionada = jtMaterias.getSelectedRow();
+        int filaSeleccionada = -1;
+        filaSeleccionada = jtMaterias.getSelectedRow();
         if (filaSeleccionada!=-1){
             idMateria = (Integer)jtMaterias.getValueAt(filaSeleccionada, 0);
             MateriaData matData = new MateriaData();
@@ -299,7 +314,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
                 jbAnularInscripcion.setEnabled(true); //Activar Boton Anular
             }
         }
-    }//GEN-LAST:event_jtMateriasMouseClicked
+    }//GEN-LAST:event_jtMateriasMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
