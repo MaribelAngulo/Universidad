@@ -75,9 +75,9 @@ public class AlumnoData {
             PreparedStatement ps = con.prepareStatement(sql);
             int res = ps.executeUpdate();
             if (res == 1) {
-                JOptionPane.showMessageDialog(null, "Alumno eliminado ....","Información",1);
+                JOptionPane.showMessageDialog(null, "Alumno eliminado","Información",1);
             } else {
-                JOptionPane.showMessageDialog(null, "Imposible eliminar alumno ...","Información",1);
+                JOptionPane.showMessageDialog(null, "Imposible eliminar alumno","Información",1);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -204,6 +204,7 @@ public class AlumnoData {
             } else {
                 JOptionPane.showMessageDialog(null, "Imposible activar alumno","Información",1);
             }
+            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en registro" + ex.getMessage(),"Error",0);
         }

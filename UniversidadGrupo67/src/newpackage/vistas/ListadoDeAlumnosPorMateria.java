@@ -110,7 +110,7 @@ public class ListadoDeAlumnosPorMateria extends javax.swing.JInternalFrame {
         getContentPane().add(jRBAlumnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 190, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setText("Alumnos por materia");
+        jLabel1.setText("Alumnos por Materia");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, 60));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 590, 10));
 

@@ -71,6 +71,12 @@ public class FormularioAlumnos extends javax.swing.JInternalFrame {
         setTitle("Alumno");
         setName(""); // NOI18N
 
+        jTextNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextNombreKeyTyped(evt);
+            }
+        });
+
         jBtnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8-más-50.png"))); // NOI18N
         jBtnNuevo.setText("Nuevo");
@@ -133,6 +139,12 @@ public class FormularioAlumnos extends javax.swing.JInternalFrame {
         jTextDni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextDniKeyTyped(evt);
+            }
+        });
+
+        jTextApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextApellidoKeyTyped(evt);
             }
         });
 
@@ -299,7 +311,6 @@ public class FormularioAlumnos extends javax.swing.JInternalFrame {
                     JDateFechaNacimiento.setDate(Date.valueOf(alumno.getFechaNac()));
                     jTextDni.setEnabled(false);
                     //DESACTIVO EL BOTON ACTIVO LA UNICA FORMA DE BORRA ES POR EL BOTON
-                    //jRBEstado.setEnabled(false);
 
                     //ACTIVO LOS BOTONES
                     jBtnEliminar.setEnabled(true);
@@ -316,11 +327,9 @@ public class FormularioAlumnos extends javax.swing.JInternalFrame {
                         //ACTIVO EL ALUMNO
                         alumnoData.activoAlumno(alumno.getIdAlumno());
                         IniciarControles();
-                       // this.dispose();
                     } else {
                         //ACTIVO LOS BOTONES
                         IniciarControles();
-                    //    this.dispose();
                     }
                 }
             } else {
@@ -389,12 +398,8 @@ public class FormularioAlumnos extends javax.swing.JInternalFrame {
             if (respuesta == 0) {
                 //ELIMINO EL ALUMNO
                 alumnoData.eliminarAlumno(alumno.getIdAlumno());
-                IniciarControles();
-               
-            } else {
-                //   this.dispose();
-                //IniciarControles();
-            }
+                IniciarControles();               
+            } 
         } else {
             JOptionPane.showMessageDialog(this, "Error al Borrar");
             this.dispose();
@@ -425,19 +430,33 @@ public class FormularioAlumnos extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Error de tipo de datos " + e.getMessage(),"Información",1);
             }
 
-            int respuesta = JOptionPane.showConfirmDialog(this, "Esta Seguro de modificar el alumno " + alumno.getApellido() + " " + alumno.getNombre(), "Confirmación", JOptionPane.YES_NO_OPTION);
+            int respuesta = JOptionPane.showConfirmDialog(this, "Esta seguro de modificar el alumno " + alumno.getApellido() + " " + alumno.getNombre(), "Confirmación", JOptionPane.YES_NO_OPTION);
             if (respuesta == 0) {
                 //MODIFICO EL ALUMNO
                 alumnoData.modificarAlumno(alumno);
-               // this.dispose();
                IniciarControles();
-            } else {
-                // this.dispose();
-               // IniciarControles();
             }
         }
 
     }//GEN-LAST:event_jBtnModificarActionPerformed
+
+    private void jTextApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextApellidoKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar(); // guardo el codigo ASCII que genero el evento
+        boolean numero = key >= 48 && key <= 57; //verifco si es un numero
+        if (numero) {
+            evt.consume();  // NO LO ESCRIBE
+        }
+    }//GEN-LAST:event_jTextApellidoKeyTyped
+
+    private void jTextNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNombreKeyTyped
+        // TODO add your handling code here:
+        int key = evt.getKeyChar(); // guardo el codigo ASCII que genero el evento
+        boolean numero = key >= 48 && key <= 57; //verifco si es un numero
+        if (numero) {
+            evt.consume();  // NO LO ESCRIBE
+        }
+    }//GEN-LAST:event_jTextNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

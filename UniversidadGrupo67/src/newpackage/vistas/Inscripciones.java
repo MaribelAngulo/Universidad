@@ -224,7 +224,6 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         jbAnularInscripcion.setEnabled(false); //Desactivar Boton Anular
         jbInscribir.setEnabled(false); //Desactivar Boton Inscribir
         jRbMateriasInscriptas.setSelected(false); //Des-seleccionar RadioButton Materias Inscriptas
-        //List<Materia> obtenerMateriasNoCursadas(alumnoSeleccionado.getIdAlumno())
         List<Materia> listaMaterias = new ArrayList<Materia>();
         listaMaterias = inscData.obtenerMateriasNoCursadas(alumnoSeleccionado.getIdAlumno());
         limpiarTabla();
@@ -266,7 +265,6 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         jbInscribir.setEnabled(false); //Desactivar Boton Inscribir
         jbAnularInscripcion.setEnabled(false); //Desactivar Boton Anular
         jRbMateriasNoInscriptas.setSelected(false); //Des-seleccionar RadioButton Materias No Inscriptas
-        //Llenar la tabla List<Materia> obtenerMateriasCursadas(alumnoSeleccionado.getIdAlumno()) InscripcionData
         List<Materia> listaMaterias = new ArrayList<Materia>();
         listaMaterias = inscData.obtenerMateriasCursadas(alumnoSeleccionado.getIdAlumno());
         limpiarTabla();

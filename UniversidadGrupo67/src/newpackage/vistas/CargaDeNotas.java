@@ -104,7 +104,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         setTitle("Carga De Notas");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setText("Carga De Notas");
+        jLabel1.setText("Carga de Notas");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel2.setText("Seleccione un Alumno:");
