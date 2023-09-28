@@ -315,6 +315,9 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Ingrese un número válido.", "INFORMACIÓN", 1);
                 return;
+            }catch (NullPointerException ex) {
+                JOptionPane.showMessageDialog(null, "Ingrese datos válidos.", "INFORMACIÓN", 1);
+                return;
             }
         }
     }//GEN-LAST:event_jBGuardarActionPerformed
