@@ -43,7 +43,7 @@ public class InscripcionData {
             ResultSet rs = ps.getGeneratedKeys(); //Devolver clave generada
             if (rs.next()) {
                 inscripcion.setIdInscripcion(rs.getInt(1)); // Asignar IdMateria
-                JOptionPane.showMessageDialog(null, "Inscripción realizada (Código de inscripción: "+rs.getInt(1)+")", "INFORMACIÓN", 1); //Dialogo de materia agregada
+                JOptionPane.showMessageDialog(null, "Inscripción realizada (Código de inscripción: "+inscripcion.getIdInscripcion()+")", "INFORMACIÓN", 1); //Dialogo de materia agregada
             }
             ps.close();
         } catch (SQLException ex) {
@@ -127,7 +127,6 @@ public class InscripcionData {
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("anio"));
                 materia.setActivo(rs.getBoolean("estado"));
-                //Guardo la inscripcion en la lista
                 materiasCursadas.add(materia);
             } 
             ps.close();
@@ -156,7 +155,6 @@ public class InscripcionData {
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAnioMateria(rs.getInt("anio"));
                 materia.setActivo(rs.getBoolean("estado"));
-                //Guardo la inscripcion en la lista
                 materiasNoCursadas.add(materia);
             } 
             ps.close();
@@ -168,7 +166,6 @@ public class InscripcionData {
     }
     
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria){
-        // Consulta sql para insertar materia
         String sql = "DELETE FROM inscripcion WHERE idAlumno =? AND idMateria=?";
         try {
             con = Conexion.getConexion(); //Conexion con la base de datos
@@ -190,7 +187,6 @@ public class InscripcionData {
     }
     
     public boolean actualizarNota(int idAlumno, int idMateria, double nota){
-        // Consulta sql para insertar materia
         String sql = "UPDATE inscripcion SET nota=? WHERE idAlumno =? AND idMateria=?";
         //devuelve si se pudo o  no cambiar la nota
         boolean estado=false;
@@ -201,12 +197,8 @@ public class InscripcionData {
             ps.setInt(2, idAlumno); //Asignacion de valores
             ps.setInt(3, idMateria); //Asignacion de valores
             int res = ps.executeUpdate();
-            if (res == 0) {
-                estado= false;
-                //JOptionPane.showMessageDialog(null, "No se pudo modificar la nota", "MENSAJE", 1);
-            } else {
+            if (res == 1) {
                 estado= true;
-                //JOptionPane.showMessageDialog(null, "Nota modificada con exito", "MENSAJE", 1);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -237,7 +229,6 @@ public class InscripcionData {
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setActivo(rs.getBoolean("estado"));
-                //Guardo la inscripcion en la lista
                 alumnos.add(alumno);
             } 
             ps.close();

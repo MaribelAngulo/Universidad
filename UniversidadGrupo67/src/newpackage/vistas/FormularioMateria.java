@@ -21,7 +21,6 @@ import newpackage.entidades.Materia;
  */
 public class FormularioMateria extends javax.swing.JInternalFrame {
 
-    private Connection con = null;
     private boolean mdfActivado = false;
     private boolean gdActivado = false;
     private MateriaData materiaData = new MateriaData();
@@ -92,12 +91,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         setTitle("Formulario Materia");
         setPreferredSize(new java.awt.Dimension(616, 576));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTfCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTfCodigoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 230, -1));
         getContentPane().add(jTfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 300, -1));
         getContentPane().add(jTfAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 300, -1));
@@ -194,10 +187,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTfCodigoActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
 

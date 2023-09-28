@@ -46,7 +46,6 @@ public class MateriaData {
 
     // Metodo para modificar materia
     public void modificarMateria(Materia materia) {
-        // Consulta sql para insertar materia
         String sql = "UPDATE materia SET nombre=?, anio=?, estado=? WHERE idMateria =?";
         try {
             con = Conexion.getConexion(); //Conexion con la base de datos

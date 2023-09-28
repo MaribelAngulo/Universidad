@@ -153,6 +153,9 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jTextNombre">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextNombreKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRBEstado">
     </Component>
@@ -283,6 +286,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextApellido">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextApellidoKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBtnBuscar">
       <Properties>
